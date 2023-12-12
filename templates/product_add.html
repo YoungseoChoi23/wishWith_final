@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/product_add.css" />
+    <title>공동 구매 등록하기</title>
+  </head>
+  <body>
+
+    <!-- 이거 추가 -->
+   <form id="productForm" action="/add-product-post" method="post" enctype="multipart/form-data">  
+    <div class="container">
+      <div class="navigation">
+        <span class="back-arrow">&larr;</span>
+        <div class="action-buttons">
+            <button class="secondary-btn" onclick="saveTemp()">임시저장</button>
+            <button class="primary-btn" id="joinBtn">공구참여</button>
+          </div>
+          
+      </div>
+      <div class="header">
+        공동 구매 등록하기
+      </div>
+
+      <div class="navBar">
+        <div class="navList selected">공구계획</div>
+        <div class="navList">상세정보</div>
+      </div>
+      <div class="content">
+        <div class="form-section">
+            
+              <div style="display: flex; flex-direction: row; align-items: center;">
+              <div style="display: flex; width: 30%; flex-direction: column;">
+                <div class="form-title">상품 이미지</div>
+                <div class="form-description">
+                  상품의 이미지를 업로드해주세요.
+                </div>
+              </div>
+
+              <input type="file" id="img_path" name="img_path" accept="image/*">
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          <div style="display: flex; flex-direction: row;  align-items: center;">
+            <div style="display: flex; width: 30%; flex-direction: column;">
+              <div class="form-title">상품 URL</div>
+              <div class="form-description">
+                구매를 원하는 상품의 URL을 복사해 붙여넣어주세요.
+              </div>
+            </div>
+   
+            <input
+              type="text"
+              id="product-url"
+              placeholder="ex. https://naver.com"
+            />
+            <div id="crawlBtn" class="register-btn">등록</div>
+          </div>
+          <div class="product-info">
+            <div class="image-placeholder"></div>
+            <div class="product-details">
+              <div>상품명: 해피데이 대용량 핫팩 150g, 25개</div>
+              <div>가격: 25,000원</div>
+              <div>배달비: 4,000원</div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: row; align-items: center;">
+            <div style="display: flex; width: 30%; flex-direction: column;">
+              <div class="form-title">카테고리</div>
+              <div class="form-description">
+                상품의 성격과 가장 알맞은 카테고리를 선택해주세요.
+              </div>
+            </div>
+
+            <input
+              type="text"
+              id="product-category"
+              placeholder="생필품"
+              name = "product-category"
+            />
+        </div>
+      </div>
+      <div class="form-section">
+        <div style="display: flex; flex-direction: row;  align-items: center;">
+          <div style="display: flex; width: 30%; flex-direction: column;">
+            <div class="form-title">공구 일정</div>
+            <div class="form-description">
+              공구일정을 적어주세요
+            </div>
+          </div>
+
+          <input
+            type="date"
+            id="start-date"
+            name="start-date"     
+            style="width: 200px;"
+            placeholder="시작 날짜를 선택해주세요."
+            
+          />
+          <input
+            type="date"
+            id="end-date"
+            name="end-date"   
+            style="width: 200px;"
+            placeholder="종료 날짜를 선택해주세요."
+                 
+          />
+        </div>
+        
+        <div style="display: flex; flex-direction: row;  align-items: center;">
+          <div style="display: flex; width: 30%; flex-direction: column;">
+            <div class="form-title">공구 수량</div>
+            <div class="form-description">
+              공동구매를 진행할 상품의 수량을 입력해주세요.
+            </div>
+          </div>
+
+          <input
+            type="text"
+            id="product-number"
+            name="product-number"
+          />개
+      </div>
+      <div style="display: flex; flex-direction: row;  align-items: center;">
+        <div style="display: flex; width: 30%; flex-direction: column;">
+          <div class="form-title">공구 인원</div>
+          <div class="form-description">
+            공동구매를 진행할 인원을 입력해주세요. 이때, 전체 가격과 수량을 고려하여 결정해야 합니다.
+          </div>
+        </div>
+
+        <input
+          type="text"
+          id="people-number"
+        />명
+        </div>
+        <div style="display: flex; flex-direction: row;  align-items: center;">
+            <div style="display: flex; width: 30%; flex-direction: column;">
+            <div class="form-title">공구 장소</div>
+            <div class="form-description">
+                상품을 배부할 장소를 선택해주세요.
+            </div>
+            </div>
+
+        <input
+          type="text"
+          id="product-place"
+          name="product-place"
+        />
+    </div>
+    <div style="display: flex; flex-direction: row;  align-items: center;">
+        <div style="display: flex; width: 30%; flex-direction: column;">
+          <div class="form-title">한 줄 소개</div>
+          <div class="form-description">
+            공동 구매에 대해 간단하게 소개해주세요.
+한 줄 소개는 메인 페이지와 상품 상세 페이지에 노출됩니다.
+벗들의 이목을 끄는 멋진 한 줄 소개를 작성해보세요.
+          </div>
+        </div>
+
+        <input type="text"
+          id="product-description" name="product-description"/>
+    </div>
+    </div>
+    </div>
+
+  </form> <!-- 이거 추가 -->
+
+  <script>
+    document.getElementById('crawlBtn').addEventListener('click', function (event) {
+        console.log("실행됨");
+
+        var productUrl = document.getElementById('product-url').value;
+        console.log("productUrl");
+        console.log(productUrl);
+        fetch('/crawl-url', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ url: productUrl }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // 추출된 데이터를 콘솔에 출력
+            console.log("실행됨")
+            console.log(data);
+
+            // 추출된 데이터를 페이지에 표시하는 로직 추가 (예시)
+            // document.querySelector('.image-placeholder').innerHTML = '<img src="' + data.image_link + '">';
+            // document.querySelector('.product-details').innerHTML = 
+            //     '<div>상품명: ' + data.title + '</div>' +
+            //     '<div>가격: ' + data.price_info + '</div>' +
+            //     '<div>배달비: ' + data.delivery_info + '</div>';
+        });
+    });
+</script>
+
+  </body>
+  
+</html>
