@@ -1,0 +1,243 @@
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  font-weight: 600;
+  font-style: normal;
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard-Bold";
+  font-weight: 700;
+  font-style: normal;
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+html {
+  width: 100%;
+  height: 100vh;
+  margin: 50px auto;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  justify-content: center;
+}
+@media (min-width: 1600px) {
+  body {
+    max-width: 1540px;
+  }
+}
+.head {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  margin-bottom: 50px;
+}
+#logo {
+  width: 253.28px;
+  height: 40.4px;
+}
+
+#login-btn {
+  width: 120px;
+  height: 32.25px;
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  text-decoration: none;
+  color: #5bab93;
+  border-radius: 4.78px;
+  font-size: 15px;
+  font-family: "Pretendard-Bold";
+}
+
+#reg-btn {
+  width: 140px;
+  height: 32.25px;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  text-decoration: none;
+  color: #5bab93;
+  border-radius: 4.78px;
+  font-size: 15px;
+  font-family: "Pretendard-Bold";
+}
+
+/* #wish-btn {
+    color: #5bab93;
+    font-size: 30px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: 'Pretendard-Bold';
+  } */
+
+#wish-btn {
+  width: 30px;
+  height: 32.25px;
+  margin-left: 20px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #5bab93;
+  text-decoration: none;
+  color: #fffcf0;
+  border-radius: 11.94px;
+  font-size: 15px;
+  font-family: "Pretendard-Bold";
+}
+
+#mypage-btn {
+  width: 120px;
+  height: 32.25px;
+  display: flex;
+  padding: 0 10px;
+  margin-left: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  text-decoration: none;
+  color: #5bab93;
+  border-radius: 4.78px;
+  font-size: 15px;
+  font-family: "Pretendard-Bold";
+}
+
+.myInfo {
+  display: flex;
+  margin-right: 0;
+  margin-left: 50%;
+  height: 30px;
+}
+.nav {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+#nav1 {
+  width: 38px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Pretendard-SemiBold";
+  color: #000;
+  text-decoration: none;
+}
+
+#nav2 {
+  width: 66px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Pretendard-SemiBold";
+  color: #000;
+  text-decoration: none;
+}
+
+#nav3 {
+  width: 66px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Pretendard-SemiBold";
+  color: #000;
+  text-decoration: none;
+}
+
+#nav4 {
+  width: 66px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Pretendard-SemiBold";
+  color: #000;
+  text-decoration: none;
+}
+
+#nav5 {
+  width: 80px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Pretendard-SemiBold";
+  color: #000;
+  text-decoration: none;
+}
+
+#nav6 {
+  width: 80px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Pretendard-SemiBold";
+  color: #000;
+  text-decoration: none;
+}
+
+#nav7 {
+  width: 52px;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Pretendard-SemiBold";
+  color: #000;
+  text-decoration: none;
+}

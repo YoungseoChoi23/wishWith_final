@@ -9,6 +9,24 @@ app = Flask(__name__)
 def productAdd():
     return render_template('product_add.html')
 
+@app.route("/")
+def index():
+    return render_template('index.html')
+
+@app.route("/header")
+def headerBefore():
+    return render_template('layout/header.html')
+@app.route("/header-only")
+def headerAfter():
+    return render_template('layout/header_only.html')
+@app.route("/footer")
+def footerEnter():
+    return render_template('layout/footer.html')
+
+
+
+
+
 # 크롤링 코드
 @app.route('/crawl-url', methods=['POST'])
 def crawl_url():
