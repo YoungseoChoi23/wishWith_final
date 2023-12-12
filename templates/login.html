@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+        {% with mesg = get_flashed_messages() %} {% if mesg !=[] %}
+    <script>
+      alert("{{ mesg[0] }}");
+    </script>
+    {% endif %} {% endwith %}
+    </head>
+    <body>
+        <a href="{{url_for('index')}}" target="_parent" id="ximg"><svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32.8214 10.7793L10.9404 32.9947" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10.9404 10.7793L32.8214 32.9947" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <div class="textinfo">
+            <div class="text1">서비스 사용을 위해</div>
+            <div class="text2">로그인이 필요해요</div>
+        </div>
+        <a href="{{url_for('index')}}" target="_self" id="login">로그인</a>
+        <a href="signup1" target="_self" id="signup">회원가입</a>
+        <form method="post" action="/login_confirm" id="login-form">
+            <label for="id" id="id">아이디</label>
+            <input type="text" name="id" placeholder="enter your ID"><hr/><br>
+            <label for="id" id="password">비밀번호</label>
+            <input type="text" name="password" placeholder="enter your PW"><hr/>
+            <div class="findpw">
+                <div id="findpw1">비밀번호를 까먹으셨나요?</div>
+                <div id="findpw2"><a ref="#">비밀번호 찾기</a></div><br>
+        </div>
+            </div>
+            <input type="submit" value="로그인">
+
+        </form>
+    </body>
+</html>

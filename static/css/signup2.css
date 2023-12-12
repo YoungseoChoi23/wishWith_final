@@ -1,0 +1,227 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Regular.ttf")
+      format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard-Medium";
+  font-weight: 500;
+  font-style: normal;
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Medium.ttf")
+      format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pretendard-Bold";
+  font-weight: 700;
+  font-style: normal;
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+#ximg {
+  margin-left: 16px;
+  margin-top: 13px;
+}
+
+.textinfo {
+  margin-left: 121.5px;
+  margin-top: -9.77px;
+  width: 146px;
+  height: 64px;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.text1 {
+  font-family: "Pretendard-Regular";
+}
+
+.text2 {
+  font-family: "Pretendard-Bold";
+}
+
+#login {
+  margin-left: 29px;
+  margin-top: 138px;
+  width: 62px;
+  height: 39px;
+  padding: 10px;
+  font-size: 16px;
+  font-family: "Pretendard-Medium";
+  color: #b9b9b9;
+  text-decoration: none;
+  text-align: center;
+}
+
+#signup {
+  margin-top: 138px;
+  width: 76px;
+  height: 39px;
+  padding: 10px;
+  font-size: 16px;
+  font-family: "Pretendard-Bold";
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  border-bottom-style: solid;
+  border-bottom-width: 1.5px;
+  border-bottom-color: #5bab93;
+}
+
+#signup2-form > label {
+  margin-left: 28px;
+  height: 38px;
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  font-family: "Pretendard-Regular";
+}
+
+#signup2-form > div > label {
+  margin-left: 28px;
+  margin-top: 10px;
+  width: 59px;
+  height: 38px;
+  padding: 0px;
+  text-align: left;
+  font-size: 15px;
+  font-family: "Pretendard-Regular";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#signup2-form > input {
+  height: 38px;
+  margin-top: 6.5px;
+  padding: 10px;
+  font-size: 15px;
+  font-family: "Pretendard-Regular";
+  color: #d9d9d9;
+  background-color: #fff;
+}
+
+#signup2-form > input[name="nickname"] {
+  width: 157px;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+hr {
+  width: 332px;
+  height: 1.5px;
+  margin-left: 28px;
+  background-color: #5bab93;
+  border: 0;
+}
+
+.upload {
+  display: flex;
+  flex-direction: row;
+  margin-top: 6.5px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+#signup2-form > div > div > p {
+  margin-left: 28px;
+  margin-top: 10px;
+  width: 59px;
+  height: 38px;
+  padding: 0px;
+  text-align: left;
+  font-size: 15px;
+  font-family: "Pretendard-Regular";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-img-input::after {
+  margin-left: 50px;
+  margin-top: 6.5px;
+  content: "사진 불러오기";
+  display: inline-block;
+  width: 109px;
+  height: 26px;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 13px;
+  font-family: "Pretendard-Regular";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d9d9d9;
+}
+
+#info {
+  font-size: 12px;
+  font-family: "Pretendard-Regular";
+  margin-left: 137px;
+}
+
+.stepcircle {
+  display: flex;
+  flex-direction: row;
+  margin-top: 177px;
+}
+
+#circle1 {
+  margin-left: 178px;
+}
+
+#circle2 {
+  margin-left: 9px;
+}
+
+#signup2-form > input[type="submit"] {
+  width: 332px;
+  height: 43px;
+  margin-left: 28px;
+  margin-top: 42px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #5bab93;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Pretendard-Regular";
+}

@@ -2,8 +2,12 @@ from flask import Flask, render_template , url_for, request, redirect , flash, s
 import hashlib
 from bs4 import BeautifulSoup
 import requests
+from database import DBhandler
+
 
 app = Flask(__name__)
+app.config["SECRET_KEY"]="helloosp"
+DB = DBhandler()
 
 @app.route("/product-add") 
 def productAdd():
@@ -23,7 +27,48 @@ def headerAfter():
 def footerEnter():
     return render_template('layout/footer.html')
 
+@app.route("/signup1")
+def signup1():
+    return render_template('signup1.html')
 
+@app.route("/signup2", methods=["GET", "POST"])
+def signup2():
+    if request.method == "POST":
+        return redirect(url_for('signup1'))
+    return render_template('signup2.html')
+
+@app.route("/signup1_post", methods=['POST'])
+def register_user():
+    data = request.form
+    pw = request.form['pw']
+    pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
+    
+    if DB.insert_user(data, pw_hash):
+        return render_template('signup3.html')
+    else:
+        flash("이미 존재하는 아이디입니다!")
+        return redirect(url_for('signup1'))
+    
+@app.route('/login')
+def login():
+    return render_template('login.html')
+    
+@app.route("/login_confirm", methods=['POST'])
+def login_user():
+    id_=request.form['id']
+    pw=request.form['password']
+    pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
+    if DB.find_user(id_,pw_hash):
+        session['id']=id_
+        return redirect(url_for('index'))
+    else:
+        flash("존재하지 않는 정보입니다! 다시 로그인을 시도해주세요.")
+        return redirect(url_for('login'))
+    
+@app.route("/logout")
+def logout_user():
+    session.clear()
+    return redirect(url_for('index'))
 
 
 

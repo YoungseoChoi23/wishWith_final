@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../static/css/signup2.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar__logo">
+        <a href="/list">Orang2E</a>
+      </div>
+      <ul class="navbar__menu">
+        <li><a href="/login">Login</a></li>
+        <li><a href="/list">List</a></li>
+        <li><a href="/review">Review</a></li>
+      </ul>
+    </nav>
+    <a href="{{url_for('index')}}" target="_parent" id="ximg"
+      ><svg
+        width="44"
+        height="44"
+        viewBox="0 0 44 44"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M32.8214 10.7793L10.9404 32.9947"
+          stroke="black"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M10.9404 10.7793L32.8214 32.9947"
+          stroke="black"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </a>
+    <div class="textinfo">
+      <div class="text1">서비스 사용을 위해</div>
+      <div class="text2">회원가입이 필요해요</div>
+    </div>
+    <a href="#" target="_self" id="login">로그인</a>
+    <a href="#" target="_self" id="signup">회원가입</a>
+    <form method="post" action="#" id="signup2-form">
+      <label for="nickname" id="name">닉네임</label>
+      <input type="text" name="nickname" placeholder="enter your nickname" />
+      <hr />
+      <div class="upload">
+        <div><p>프로필</p></div>
+        <div>
+          <label class="custom-img-input" for="profile-img"></label>
+          <input type="file" name="profile-img" /><br />
+        </div>
+      </div>
+      <pre id="info">
+프로필 사진을 설정하지 않으실 경우
+기본 이화인 프로필 사진으로 설정됩니다.
+            </pre
+      >
+      <div class="stepcircle">
+        <div id="circle1">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="6" cy="6" r="6" fill="#D9D9D9" />
+          </svg>
+        </div>
+        <div id="circle2">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="6" cy="6" r="6" fill="#5BAB93" />
+          </svg>
+        </div>
+      </div>
+      <input type="submit" value="회원가입" />
+    </form>
+    <script>
+      document.getElementById("signup").addEventListener("click", function () {
+        window.location.href = "/signup1";
+      });
+    </script>
+  </body>
+</html>
