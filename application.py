@@ -173,6 +173,19 @@ def mypage():
     
     return render_template('mypage.html', user_info=user_info, row_data=row_data, limit=per_page, page=page, page_count=int((item_counts + per_page - 1) / per_page), total=item_counts)
 
+
+@app.route("/parti-product")
+def partiProduct():
+    user_id = session['id']
+    user_info = DB.get_user_info(user_id)
+    data = DB.get_purchase_details(user_id=user_id)
+
+    per_row = 3  # 행 당 표시할 아이템 수
+    item_counts = len(data)
+    row_data = [data[i * per_row:(i + 1) * per_row] for i in range((item_counts + per_row - 1) // per_row)]
+
+    return render_template("parti_product.html", user_info=user_info, row_data=row_data, total=item_counts)
+
 @app.route('/my-reviews')
 def my_reviews():
     if 'id' not in session:
@@ -184,9 +197,6 @@ def my_reviews():
     return render_template('my_review.html', reviews=user_reviews)
 
 
-@app.route("/parti-product") 
-def partiProduct():
-    return render_template("parti_product.html")
 
 @app.route("/written-review")
 def writtenReview():
@@ -213,8 +223,8 @@ def my_participate():
         name = request.args.get('name')
 
         DB.insert_product_for_user(user_id, name)
-    flash("공구 참여가 완료되었습니다!")
-    return redirect(url_for('mypage'))
+        flash("공구 참여가 완료되었습니다!")
+        return redirect(url_for('mypage'))
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5002, debug=True)

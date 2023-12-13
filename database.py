@@ -90,12 +90,14 @@ class DBhandler:
         items = self.db.child("item").get()
         target_value = ""
 
-        print("###########", name)
+        print("###########", str(name))
 
         for res in items.each():
             key_value = res.key()
+            print("keyvalue", key_value)
             if key_value == name:
                 target_value = res.val()
+                print("target", target_value)
 
         return target_value
     
@@ -128,9 +130,33 @@ class DBhandler:
             if value['id'] == user_id:
                 self.db.child("user").child(res.key()).child("purchases").push(name)
                 return True  # 사용자를 찾았을 때 해당 사용자의 키를 반환
-        
-        
         return False
+    
+    def get_user_purchases(self, user_id):
+        users = self.db.child("user").get()
+        for user in users.each():
+            if user.val().get('id') == user_id:
+                purchases = self.db.child("user").child(user.key()).child("purchases").get().val()
+                
+                print("purchases")
+                print(purchases)
+                return purchases
+        return None
+    
+    def get_purchase_details(self, user_id):
+        purchase_names = self.get_user_purchases(user_id)
+        print("names")
+        print(purchase_names)
+        purchase_keys = list(purchase_names.values())
+        if not purchase_keys:
+            return []  # 구매 목록이 없는 경우 빈 리스트 반환
 
+        purchase_details = []
+        for name in purchase_keys:
+            detail = self.get_item_byname(name)
+            if detail:
+                print(detail)
+                print("detail")
+                purchase_details.append(detail)
 
-
+        return purchase_details
