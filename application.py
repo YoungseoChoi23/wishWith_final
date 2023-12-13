@@ -58,6 +58,7 @@ def login():
     
 @app.route("/login_confirm", methods=['POST'])
 def login_user():
+    print("실행됨")
     id_=request.form['id']
     pw=request.form['password']
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
@@ -66,7 +67,7 @@ def login_user():
         return redirect(url_for('index'))
     else:
         flash("존재하지 않는 정보입니다! 다시 로그인을 시도해주세요.")
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
     
 @app.route("/logout")
 def logout_user():
