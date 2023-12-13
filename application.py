@@ -31,6 +31,10 @@ def footerEnter():
 def signup1():
     return render_template('signup1.html')
 
+@app.route("/signup3")
+def signup3():
+    return render_template('signup3.html')
+
 @app.route("/signup2", methods=["GET", "POST"])
 def signup2():
     if request.method == "POST":
@@ -44,10 +48,9 @@ def register_user():
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
     
     if DB.insert_user(data, pw_hash):
-        return render_template('signup3.html')
+        return 'signup3' 
     else:
-        flash("이미 존재하는 아이디입니다!")
-        return redirect(url_for('signup1'))
+        return jsonify({'error': '이미 존재하는 아이디입니다!'}), 400
     
 @app.route('/login')
 def login():

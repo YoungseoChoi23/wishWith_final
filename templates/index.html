@@ -235,6 +235,8 @@
             });
         }
     });
+
+
   fetch("/footer")
     .then((response) => response.text())
     .then((data) => {
@@ -267,4 +269,59 @@ document.addEventListener('click', function(event) {
             });
     }
 });
+
+document.addEventListener("click", function (event) {
+    if (event.target.matches("#login")) {
+      console.log("로그인 클릭됨");
+      event.preventDefault(); // 기본 액션 방지
+      fetch("/login")
+        .then((response) => response.text())
+        .then((data) => {
+          document.querySelector(".modal-content").innerHTML = data; // 'body' 대신 '.modal-content' 사용
+        });
+    }
+  });
+
+  document.body.addEventListener("submit", function (event) {
+    console.log("이거 실행됨");
+    if (event.target.matches("#signup1-form")) {
+      event.preventDefault();
+
+      var formData = new FormData(event.target);
+
+      fetch(event.target.action, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          if (!response.ok) {
+            // 오류 응답 처리
+            return response.json().then((errorData) => {
+              alert(errorData.error);
+              throw new Error("서버 처리 중 오류 발생");
+            });
+          }
+          return response.text();
+        })
+        .then((data) => {
+            // 서버 응답에 따라 다른 처리를 할 수 있습니다.
+            // 예: data === 'signup3' 이면 다른 페이지를 로드
+            if (data === 'signup3') {
+                fetchContentAndLoadModal('signup3');
+            } else {
+                document.querySelector(".modal-content").innerHTML = data;
+            }
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+});
+
+function fetchContentAndLoadModal(page) {
+    fetch("/" + page)
+    .then((response) => response.text())
+    .then((data) => {
+        document.querySelector(".modal-content").innerHTML = data;
+    });
+}
+
 </script>

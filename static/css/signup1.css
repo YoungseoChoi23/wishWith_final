@@ -74,11 +74,14 @@
 }
 
 #login {
-  margin-left: 29px;
-  margin-top: 138px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: none;
   width: 62px;
   height: 39px;
-  padding: 10px;
+  margin-left: 29px;
+
   font-size: 16px;
   font-family: "Pretendard-Medium";
   color: #b9b9b9;
@@ -87,10 +90,13 @@
 }
 
 #signup {
-  margin-top: 138px;
-  width: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 85px;
   height: 39px;
-  padding: 10px;
+
   font-size: 16px;
   font-family: "Pretendard-Bold";
   color: #000;
@@ -99,6 +105,11 @@
   border-bottom-style: solid;
   border-bottom-width: 1.5px;
   border-bottom-color: #5bab93;
+}
+
+.sub-container {
+  display: flex;
+  height: 50px;
 }
 
 #signup1-form > label {
@@ -137,7 +148,7 @@
 #signup1-form > input[name="name"] {
   width: 130px;
   margin-left: 53px;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 #signup1-form > div > input {
