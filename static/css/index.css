@@ -352,6 +352,7 @@ body {
 
 .modal-content {
   position: relative;
+  overflow: auto;
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;

@@ -69,11 +69,13 @@
   font-family: "Pretendard-Bold";
 }
 #login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-left: 29px;
-  margin-top: 138px;
   width: 62px;
   height: 39px;
-  padding: 10px;
+
   font-size: 16px;
   font-family: "Pretendard-Bold";
   color: #000;
@@ -84,15 +86,22 @@
   border-bottom-color: #5bab93;
 }
 #signup {
-  margin-top: 138px;
-  width: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: none;
+  width: 85px;
   height: 39px;
-  padding: 10px;
+
   font-size: 16px;
   font-family: "Pretendard-Medium";
   color: #b9b9b9;
   text-decoration: none;
   text-align: center;
+}
+.sub-container {
+  display: flex;
+  height: 50px;
 }
 #login-form > label {
   margin-left: 28px;
@@ -121,7 +130,7 @@
 #login-form > input[name="id"] {
   width: 107px;
   margin-left: 28px;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 #login-form > input[name="password"] {
   width: 116px;

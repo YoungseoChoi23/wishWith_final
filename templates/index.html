@@ -252,4 +252,19 @@ function openModal() {
 function closeModal() {
     modal.style.display = 'none';
 }
+
+document.addEventListener('click', function(event) {
+    // signup1 링크가 클릭되었는지 확인
+    if (event.target.matches('#signup')) {
+        event.preventDefault(); // 기본 액션 방지
+
+        // AJAX 요청을 통해 signup1의 내용을 가져옴
+        fetch('/signup1')
+            .then(response => response.text())
+            .then(data => {
+                // 모달 내부에 signup1의 내용을 로드
+                document.querySelector('.modal-content').innerHTML = data;
+            });
+    }
+});
 </script>
