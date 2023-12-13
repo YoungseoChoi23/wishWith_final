@@ -145,18 +145,15 @@ class DBhandler:
     
     def get_purchase_details(self, user_id):
         purchase_names = self.get_user_purchases(user_id)
-        print("names")
-        print(purchase_names)
         purchase_keys = list(purchase_names.values())
         if not purchase_keys:
-            return []  # 구매 목록이 없는 경우 빈 리스트 반환
+            return {}  # 구매 목록이 없는 경우 빈 딕셔너리 반환
 
-        purchase_details = []
+        purchase_details = {}
         for name in purchase_keys:
             detail = self.get_item_byname(name)
             if detail:
-                print(detail)
-                print("detail")
-                purchase_details.append(detail)
+                # 제품 이름(또는 키)를 키로 하고 상세 정보를 값으로 설정
+                purchase_details[name] = detail
 
         return purchase_details

@@ -182,7 +182,7 @@ def partiProduct():
 
     per_row = 3  # 행 당 표시할 아이템 수
     item_counts = len(data)
-    row_data = [data[i * per_row:(i + 1) * per_row] for i in range((item_counts + per_row - 1) // per_row)]
+    row_data = [list(data.items())[i * per_row:(i + 1) * per_row] for i in range((len(data) + per_row - 1) // per_row)]
 
     return render_template("parti_product.html", user_info=user_info, row_data=row_data, total=item_counts)
 
