@@ -7,6 +7,7 @@
       href="../static/css/product_list.css"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <div id="header"></div>
   <img src = "../../static/img/banner.png" class="banner"></div>
@@ -15,7 +16,7 @@
     <div class="card-line1">
         {% for row in row_data %}
       <div class="card-container1">
-        {% for key, value in row %}
+        {% for key, value in row %} 
         <div class="container" onclick="location.href='/view_detail/{{key}}/';"
         style="cursor: pointer" id="cont1-5">
           <div class="inner-box1">
@@ -24,7 +25,7 @@
                 <span class="category-label">{{value.product_category}} |  </span>
                 <span class="store">{{value.delivery}}</span>
               </div>
-              <div class="product-name">{{ value.title }}</div>
+              <div class="product-name" id="product_name" data-product-name="{{ key }}">{{ value.title }}</div>
               <div class="price">{{value.people_number}}명, {{value.price}}원</div>
             </div>
             <div class="progress">
@@ -87,5 +88,69 @@
     .then((data) => {
       document.getElementById("footer").innerHTML = data;
     });
+
+    $(document).ready(function () {
+    $(".container").each(function () {
+      var container = $(this);
+      var heart = container.find(".heart");
+      showHeart(container, heart);
+    });
+  });
+
+  function showHeart(container, heart) {
+    console.log("showHeart called");
+    var productName = container.find(".product-name").data("product-name");
+    $.ajax({
+      type: 'GET',
+      url: '/show_heart/' + productName + '/',
+      data: {},
+      success: function (response) {
+        let my_heart = response['my_heart'];
+        if (my_heart['interested'] == 'Y') {
+          heart.css("fill", "#E27A6C");
+          heart.click(function (event) {
+            event.stopPropagation();
+            unlike(productName); // Pass productName to unlike
+          });
+        } else {
+          heart.css("fill", "none");
+          heart.click(function (event) {
+            event.stopPropagation();
+            like(productName); // Pass productName to like
+          });
+        }
+
+        container.attr("onclick", 'location.href="/view_detail/' + productName + '/";');
+      }
+    });
+  }
+
+  function like(productName) {
+    $.ajax({
+      type: 'POST',
+      url: '/like/' + productName + '/', // Use productName in the URL
+      data: {
+        interested: "Y"
+      },
+      success: function (response) {
+        alert(response['msg']);
+        window.location.reload();
+      }
+    });
+  }
+
+  function unlike(productName) {
+    $.ajax({
+      type: 'POST',
+      url: '/unlike/' + productName + '/', // Use productName in the URL
+      data: {
+        interested: "N"
+      },
+      success: function (response) {
+        alert(response['msg']);
+        window.location.reload();
+      }
+    });
+  }
   </script>
 </html>
