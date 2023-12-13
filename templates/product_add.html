@@ -110,6 +110,7 @@
         <input
           type="text"
           id="people-number"
+          name="people-number"
         />명
         </div>
         
@@ -128,6 +129,13 @@
     </div>
     </div>
     </div>
+    <!-- 숨겨진 input 필드 -->
+<input type="hidden" id="hidden-title" name="hidden-title">
+<input type="hidden" id="hidden-price" name="hidden-price">
+<input type="hidden" id="hidden-delivery" name="hidden-delivery">
+<input type="hidden" id="hidden-url" name="hidden-url">
+<input type="hidden" id="hidden-image-url" name="hidden-image-url">
+
 
   </form> <!-- 이거 추가 -->
 
@@ -147,7 +155,12 @@ const url = document.getElementById("product-url").value; // 상품 URL 가져�
   })
     .then((response) => response.json())
     .then((data) => {
-      // 로컬 스토리지에 정보 저장
+      document.getElementById('hidden-title').value = data.title;
+    document.getElementById('hidden-price').value = data.price;
+    document.getElementById('hidden-delivery').value = data.delivery;
+    document.getElementById('hidden-url').value = data.url;
+    document.getElementById('hidden-image-url').value = data.image_url;
+
       console.log(JSON.stringify(data));
       document.querySelector('.product-details').innerHTML = 
             '<div>상품명: ' + data.title + '</div>' +

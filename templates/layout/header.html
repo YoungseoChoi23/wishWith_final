@@ -38,13 +38,43 @@
         {% endif %}
       </div>
       <div class="nav">
-        <a href="{{url_for('index')}}" target="_self" id="nav1">홈</a>
-        <a href="#" target="_self" id="nav2">식료품</a>
-        <a href="#" target="_self" id="nav3">생필품</a>
-        <a href="#" target="_self" id="nav4">문구류</a>
-        <a href="#" target="_self" id="nav5">패션잡화</a>
-        <a href="#" target="_self" id="nav6">이화굿즈</a>
-        <a href="#" target="_self" id="nav7">기타</a>
+        <a href="{{ url_for('index') }}" target="_self" id="nav1">홈</a>
+        <a
+          href="{{ url_for('view_list', category='식료품') }}"
+          target="_self"
+          id="nav2"
+          >식료품</a
+        >
+        <a
+          href="{{ url_for('view_list', category='생필품') }}"
+          target="_self"
+          id="nav3"
+          >생필품</a
+        >
+        <a
+          href="{{ url_for('view_list', category='문구류') }}"
+          target="_self"
+          id="nav4"
+          >문구류</a
+        >
+        <a
+          href="{{ url_for('view_list', category='패션잡화') }}"
+          target="_self"
+          id="nav5"
+          >패션잡화</a
+        >
+        <a
+          href="{{ url_for('view_list', category='이화굿즈') }}"
+          target="_self"
+          id="nav6"
+          >이화굿즈</a
+        >
+        <a
+          href="{{ url_for('view_list', category='기타') }}"
+          target="_self"
+          id="nav7"
+          >기타</a
+        >
       </div>
       {% endblock%} {% block contents %}{% endblock %}
     </div>

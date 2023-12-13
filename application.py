@@ -112,6 +112,49 @@ def process_url():
         'url' : url
     }
 
+@app.route("/add-product-post", methods=["POST"])
+def registerproduct():
+
+    hidden_title = request.form.get("hidden-title")
+    hidden_price = request.form.get("hidden-price")
+    hidden_delivery = request.form.get("hidden-delivery")
+    hidden_url = request.form.get("hidden-url")
+    hidden_image_url = request.form.get("hidden-image-url")
+    user_id = session.get('id', 'default-user-id')
+    data = {
+        "product_description": request.form.get("product-description"),
+        "product_number": request.form.get("product-number"),
+        "product_category": request.form.get("product-category"),
+        "start_date": request.form.get("start-date"),
+        "end_date": request.form.get("end-date"),
+        "people_number": request.form.get("people-number"),
+        "title": hidden_title,
+        "price": hidden_price,
+        "delivery": hidden_delivery,
+        "url": hidden_url,
+        "image_url": hidden_image_url,
+        "user_id": user_id
+    }
+    print(data)
+    DB.insert_item(data)
+    return redirect(url_for('mypage'))
+
+@app.route("/products-list")
+def view_list():
+    page = request.args.get("page", 0, type=int)
+    category = request.args.get("category", None)
+    per_page = 6  # 페이지 당 표시할 아이템 수
+    per_row = 3  # 행 당 표시할 아이템 수
+    
+    data = DB.get_items(category=category)  # 카테고리에 따라 아이템 가져오기
+    print(data)
+    
+    # 페이지네이션 로직
+    item_counts = len(data)
+    data = dict(list(data.items())[page * per_page:(page + 1) * per_page])
+    row_data = [list(data.items())[i * per_row:(i + 1) * per_row] for i in range((len(data) + per_row - 1) // per_row)]
+
+    return render_template("product_list.html", row_data=row_data, limit=per_page, page=page, page_count=int((item_counts + per_page - 1) / per_page), total=item_counts)
 
 
 

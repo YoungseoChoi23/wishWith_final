@@ -43,6 +43,27 @@ class DBhandler:
                 return True
         return False
     
+    def get_items(self, category=None):
+    # 모든 아이템을 가져오는 경우
+        if not category:
+            items = self.db.child("item").get().val()
+            return items if items else {}
+
+        # 특정 카테고리의 아이템만 가져오는 경우
+        all_items = self.db.child("item").get().val()
+        if not all_items:
+            return {}
+
+        # 카테고리에 따라 필터링
+        filtered_items = {}
+        for key, item in all_items.items():
+            if item.get("product_category") == category:
+                filtered_items[key] = item
+
+        return filtered_items
+
+
+    
     def get_user_info(self, user_id):
         users = self.db.child("user").get()
         for res in users.each():
@@ -50,3 +71,26 @@ class DBhandler:
             if user_info['id'] == user_id:
                 return user_info
         return None
+    
+    def insert_item(self, data):
+    # DB에 저장할 item 정보 구성
+        item_info = {
+        "product_description": data['product_description'],
+        "product_number": data['product_number'],
+        "product_category": data['product_category'],
+        "start_date": data['start_date'],
+        "end_date": data['end_date'],
+        "title": data['title'],
+        "price": data['price'],
+        "delivery": data['delivery'],
+        "url": data['url'],
+        "image_url": data['image_url'],
+        "people_number": data['people_number'],
+        "user_id": data['user_id']
+    }
+
+    # 데이터베이스에 item 저장
+        self.db.child("item").push(item_info)
+        print(item_info)
+        return True
+
