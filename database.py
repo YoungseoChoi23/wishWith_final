@@ -178,3 +178,62 @@ class DBhandler:
     def get_reviews(self):
         reviews = self.db.child("review").get().val()
         return reviews
+    
+    def get_user_reviews(self, user_id):
+        reviews = self.db.child("review").get().val()
+        if not reviews:
+            return {}  # 리뷰가 없는 경우 빈 딕셔너리 반환
+
+        user_reviews = {}
+        for key, review in reviews.items():
+            if review['hidden_id'] == user_id:
+                user_reviews[key] = review
+
+        return user_reviews
+    
+    def get_written_reviews(self, user_id):
+        reviews = self.db.child("review").get().val()
+        if not reviews:
+            return {}  # 리뷰가 없는 경우 빈 딕셔너리 반환
+
+        user_reviews = {}
+        for key, review in reviews.items():
+            if review['writer_id'] == user_id:
+                user_reviews[key] = review
+
+        return user_reviews
+    
+
+    def get_heart_byname(self, uid, name):
+        hearts = self.db.child("heart").child(uid).get()
+        target_value=""
+        if hearts.val() == None:
+            return target_value
+        for res in hearts.each():
+            key_value = res.key()
+            if key_value == name:
+                target_value=res.val()
+        return target_value
+
+    def update_heart(self, user_id, isHeart, item):
+        heart_info ={
+            "interested": isHeart
+        }
+        self.db.child("heart").child(user_id).child(item).set(heart_info)
+        return True
+    
+    def get_wish_product_list_byuser(self, uid):
+        hearts = self.db.child("heart").child(uid).get()
+        target_values = []
+
+        if hearts.val() is None:
+            return target_values
+        for res in hearts.each():
+            product_key = res.key()
+            interested_value = res.val().get("interested", "")
+            if interested_value == 'Y':
+                target_values.append(product_key)
+
+        items = self.db.child("item").get().val()
+        filtered_items = {key: value for key, value in items.items() if key in target_values}
+        return filtered_items

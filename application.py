@@ -17,7 +17,20 @@ def productAdd():
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    page = request.args.get("page", 0, type=int)
+    category = request.args.get("category", None)
+    per_page = 20  # 페이지 당 표시할 아이템 수
+    per_row = 4  # 행 당 표시할 아이템 수
+    
+    data = DB.get_items(category=category)  # 카테고리에 따라 아이템 가져오기
+    print(data)
+    
+    # 페이지네이션 로직
+    item_counts = len(data)
+    data = dict(list(data.items())[page * per_page:(page + 1) * per_page])
+    row_data = [list(data.items())[i * per_row:(i + 1) * per_row] for i in range((len(data) + per_row - 1) // per_row)]
+
+    return render_template("index.html", row_data=row_data, limit=per_page, page=page, page_count=int((item_counts + per_page - 1) / per_page), total=item_counts)
 
 @app.route("/header")
 def headerBefore():
@@ -163,7 +176,6 @@ def mypage():
     page = request.args.get("page", 0, type=int)
     user_id = session['id']
     user_info = DB.get_user_info(user_id)
-    print(user_info)
     data = DB.get_my_items(user_id=user_id)
     per_page = 6  # 페이지 당 표시할 아이템 수
     per_row = 3  # 행 당 표시할 아이템 수
@@ -180,27 +192,16 @@ def partiProduct():
     user_info = DB.get_user_info(user_id)
     data = DB.get_purchase_details(user_id=user_id)
 
-    per_row = 3  # 행 당 표시할 아이템 수
+    per_row = 5  # 행 당 표시할 아이템 수
     item_counts = len(data)
     row_data = [list(data.items())[i * per_row:(i + 1) * per_row] for i in range((len(data) + per_row - 1) // per_row)]
 
     return render_template("parti_product.html", user_info=user_info, row_data=row_data, total=item_counts)
 
-@app.route('/my-reviews')
-def my_reviews():
-    if 'id' not in session:
-        flash("로그인 후 이용 가능합니다.")
-        return redirect(url_for('index'))
-
-    user_id = session['id']
-    user_reviews = DB.get_user_reviews(user_id)
-    return render_template('my_review.html', reviews=user_reviews)
 
 
 
-@app.route("/written-review")
-def writtenReview():
-    return render_template("written_review.html")
+
 
 
 @app.route("/view_detail/<name>/")
@@ -262,6 +263,7 @@ def view_review():
     start_idx=per_page*page
     end_idx=per_page*(page+1)
     data = DB.get_reviews() #read the table
+    print(data)
     item_counts = len(data)
     data = dict(list(data.items())[start_idx:end_idx])
     tot_count = len(data)
@@ -269,6 +271,91 @@ def view_review():
     return render_template(
         "all_review_check.html",
         row_data=row_data, limit=per_page,page=page, page_count=int((item_counts/per_page)+1),total=item_counts)
+
+@app.route('/my-reviews')
+def my_reviews():
+    if 'id' not in session:
+        flash("로그인 후 이용 가능합니다.")
+        return redirect(url_for('index'))
+    user_id = session['id']
+    user_info = DB.get_user_info(user_id)
+    page = request.args.get("page", 0, type=int)
+    per_page=5
+    per_row=5
+    row_count=int(per_page/per_row)
+    start_idx=per_page*page
+    end_idx=per_page*(page+1)
+
+    user_id = session['id']
+    data = DB.get_user_reviews(user_id)
+    item_counts = len(data)
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    row_data = [list(data.items())[i * per_row:(i + 1) * per_row] for i in range(per_page // per_row)]
+    return render_template('my_reviews.html', user_info=user_info, row_data=row_data, limit=per_page,page=page, page_count=int((item_counts/per_page)+1),total=item_counts)
+
+@app.route('/written-reviews')
+def written_reviews():
+    if 'id' not in session:
+        flash("로그인 후 이용 가능합니다.")
+        return redirect(url_for('index'))
+    
+    user_id = session['id']
+    user_info = DB.get_user_info(user_id)
+    page = request.args.get("page", 0, type=int)
+    per_page=5
+    per_row=5
+    row_count=int(per_page/per_row)
+    start_idx=per_page*page
+    end_idx=per_page*(page+1)
+
+    user_id = session['id']
+    data = DB.get_written_reviews(user_id)
+    item_counts = len(data)
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    row_data = [list(data.items())[i * per_row:(i + 1) * per_row] for i in range(per_page // per_row)]
+    return render_template('written_reviews.html', user_info=user_info, row_data=row_data, limit=per_page,page=page, page_count=int((item_counts/per_page)+1),total=item_counts)
+
+
+@app.route("/wishlist")
+def wishlist():
+    page = request.args.get("page", 0, type=int)
+    per_page = 10
+    per_row = 5
+
+    data = DB.get_wish_product_list_byuser(session['id'])
+
+    if not data:
+        return render_template("wish_list.html", row_data=[], limit=per_page, page=page, page_count=0, total=0)
+
+    data_list = list(data.items())
+    products_count = len(data_list)
+
+    start_idx = per_page * page
+    end_idx = per_page * (page + 1)
+    paginated_data = dict(data_list[start_idx:end_idx])
+
+    row_data = [list(paginated_data.items())[i * per_row:(i + 1) * per_row] for i in range(per_page // per_row)]
+    return render_template("wish_list.html", row_data=row_data, limit=per_page, page=page, page_count=int((products_count / per_page) + 1), total=products_count)
+
+@app.route('/show_heart/<name>/', methods=['GET'])
+def show_heart(name):
+    my_heart = DB.get_heart_byname(session['id'], name)
+    return jsonify({'my_heart': my_heart})
+
+
+@app.route('/like/<name>/', methods=['POST'])
+def like(name):
+    my_heart = DB.update_heart(session['id'],'Y',name)
+    return jsonify({'msg': '위시 상품에 등록되었습니다!'})
+
+@app.route('/unlike/<name>/', methods=['POST'])
+def unlike(name):
+    my_heart = DB.update_heart(session['id'],'N',name)
+    return jsonify({'msg': '위시 상품에서 제외되었습니다.'})
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5002, debug=True)

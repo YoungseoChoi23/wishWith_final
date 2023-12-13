@@ -1,32 +1,32 @@
 @font-face {
-  font-family: 'Pretendard-SemiBold';
+  font-family: "Pretendard-SemiBold";
   font-weight: 600;
   font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot');
-  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot?#iefix')
-      format('embedded-opentype'),
-    url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff2')
-      format('woff2'),
-    url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff')
-      format('woff'),
-    url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.ttf')
-      format('truetype');
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.ttf")
+      format("truetype");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Pretendard-Bold';
+  font-family: "Pretendard-Bold";
   font-weight: 700;
   font-style: normal;
-  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot');
-  src: url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot?#iefix')
-      format('embedded-opentype'),
-    url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff2')
-      format('woff2'),
-    url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff')
-      format('woff'),
-    url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.ttf')
-      format('truetype');
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.ttf")
+      format("truetype");
   font-display: swap;
 }
 
@@ -47,14 +47,15 @@ body {
 }
 
 .body.top {
+  display: block;
   width: 100%;
   height: 222px;
   border-bottom: 2px solid #d9d9d9;
 }
 .body.middle {
   display: flex;
-  flex-direction: column;
-  width: 1530px;
+  flex-direction: row;
+  height: 600px;
   justify-content: center;
 }
 .user {
@@ -135,17 +136,19 @@ li a {
   font-weight: 600;
   line-height: normal;
 }
+
 li a:hover {
   color: #5bab93;
 }
 
 .container {
+  width: 100%;
+  padding-top: 30px;
+  justify-content: flex-start;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding-left: 160px;
   gap: 30px;
+  margin-bottom: 30px;
 }
 
 .UIcard {
@@ -227,11 +230,39 @@ li a:hover {
   line-height: normal;
 }
 
+.review.contents {
+  color: #000;
+  font-family: Pretendard Variable;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin-top: 9px;
+}
+.line {
+  width: 268px;
+  height: 1px;
+  background-color: #d9d9d9;
+  padding: 0;
+  margin: 0;
+}
+.product.name {
+  color: #b9b9b9;
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 13px;
+}
+
 .page.number {
   display: flex; /* Flexbox 레이아웃 사용 */
   flex-direction: row; /* 아이템들을 가로로 배치 */
   justify-content: center;
   flex-wrap: nowrap; /* 화면 크기가 줄어들어도 내용을 다음 줄로 넘기지 않음 */
+  margin-top: 70px;
 }
 .page.number a {
   color: #b9b9b9;
@@ -249,4 +280,30 @@ li a:hover {
 .page.number a:hover {
   background-color: #5bab93;
   color: #fffcf0;
+}
+
+.page-wrap {
+  text-align: center;
+  font-size: 0;
+}
+.page-nation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.page-nation a {
+  display: block;
+  margin: 0 3px;
+  float: left;
+  border: 1px solid #e6e6e6;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  background-color: #fff;
+  font-size: 13px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
 }

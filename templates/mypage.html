@@ -26,10 +26,10 @@
         </div>
         <nav>
           <ul>
-            <li><a href="{{ url_for('mypage') }}" target="_self">마이 공구</a></li>
+            <li class="selected"><a href="{{ url_for('mypage') }}" target="_self">마이 공구</a></li>
             <li><a href="{{ url_for('my_reviews') }}" target="_self">마이 후기</a></li>
             <li><a href="{{ url_for('partiProduct') }}" target="_self">참여한 공구</a></li>
-            <li><a href="{{ url_for('writtenReview') }}">작성한 리뷰</a></li>
+            <li><a href="{{ url_for('written_reviews') }}">작성한 리뷰</a></li>
           </ul>
         </nav>
         <span class="reviewMaking">

@@ -276,10 +276,6 @@ body {
   border-radius: 5.97px;
   transition: width 0.5s ease;
 }
-.heart {
-  position: relative;
-  margin: 10px;
-}
 
 .review-background {
   margin-top: 80px;
@@ -360,4 +356,11 @@ body {
   height: 500px;
   border: 1px solid #888;
   border-radius: 20px;
+}
+
+#heart {
+  fill: none;
+}
+#heart.red {
+  fill: "#E27A6C";
 }
