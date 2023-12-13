@@ -91,7 +91,7 @@ def process_url():
 
     title = soup.find('h3', class_='_22kNQuEXmb _copyable').text
     price = soup.find('span', class_='_1LY7DqCnwR').text
-    delivery = soup.find('span', class_='bd_3uare').text
+    delivery = soup.find('em', class_='_3tOxM3n343').text
 
     img_element = soup.find('img', class_='_2RYeHZAP_4')
 
@@ -160,10 +160,18 @@ def view_list():
 
 @app.route('/mypage')
 def mypage():
+    page = request.args.get("page", 0, type=int)
     user_id = session['id']
     user_info = DB.get_user_info(user_id)
     print(user_info)
-    return render_template('mypage.html', user_info=user_info)
+    data = DB.get_my_items(user_id=user_id)
+    per_page = 6  # 페이지 당 표시할 아이템 수
+    per_row = 3  # 행 당 표시할 아이템 수
+    item_counts = len(data)
+    data = dict(list(data.items())[page * per_page:(page + 1) * per_page])
+    row_data = [list(data.items())[i * per_row:(i + 1) * per_row] for i in range((len(data) + per_row - 1) // per_row)]
+    
+    return render_template('mypage.html', user_info=user_info, row_data=row_data, limit=per_page, page=page, page_count=int((item_counts + per_page - 1) / per_page), total=item_counts)
 
 @app.route('/my-reviews')
 def my_reviews():

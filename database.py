@@ -61,6 +61,20 @@ class DBhandler:
                 filtered_items[key] = item
 
         return filtered_items
+    
+    def get_my_items(self, user_id=None):
+    # 모든 아이템을 가져오는 경우
+        items = self.db.child("item").get().val()
+        if not items:
+            return {}  # 데이터베이스에 아이템이 없는 경우 빈 딕셔너리 반환
+
+        filtered_items = {}
+        for key, item in items.items():
+            # 카테고리와 사용자 ID에 따라 필터링
+            if (not user_id or item.get("user_id") == user_id):
+                filtered_items[key] = item
+
+        return filtered_items
 
 
     

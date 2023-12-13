@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <div id="header"></div>
-     <div class="banner"></div>
+  <img src = "../../static/img/banner.png" class="banner"></div>
   <body>
     {% if total > 0 %}
     <div class="card-line1">
@@ -22,7 +22,7 @@
             <div class="inner-textbox">
               <div class="category">
                 <span class="category-label">{{value.product_category}} |  </span>
-                <span class="store">네이버쇼핑</span>
+                <span class="store">{{value.delivery}}</span>
               </div>
               <div class="product-name">{{ value.title }}</div>
               <div class="price">{{value.people_number}}명, {{value.price}}원</div>
@@ -33,9 +33,7 @@
                 <div class="discount">90%</div>
                 <br />
               </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar" style="width: 90%"></div>
-              </div>
+             
             </div>
           </div>
           <div class="inner-box2">
@@ -76,6 +74,7 @@
     {% else %}
     <p>등록된 상품이 없습니다.</p>
     {% endif %}
+    </body>
 <div id="footer"></div>
   <script>
     fetch("/header")

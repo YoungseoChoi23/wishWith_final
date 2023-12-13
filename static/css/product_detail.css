@@ -1,0 +1,265 @@
+body {
+  width: 100%;
+  margin: 0;
+}
+
+header {
+  width: 100%;
+  background-color: grey;
+  height: 173px;
+}
+
+.adBox {
+  width: 100%;
+  height: 119px;
+  background-color: #fffcf0;
+}
+
+.container {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+
+  margin: auto;
+  background-color: #ffffff;
+}
+.infoContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 71px;
+  position: relative;
+}
+.imgBox {
+  display: flex;
+  padding-bottom: 30%;
+  margin-right: 60px;
+  position: relative;
+  left: 0;
+  width: 30%;
+  background-color: grey;
+}
+.infoBox {
+  width: calc(70% - 60px);
+}
+
+.imgBox {
+  width: 100%; /* Adjust as necessary */
+  height: 200px; /* Adjust as necessary */
+  background-color: #f3f3f3; /* Placeholder color */
+  margin-bottom: 20px;
+}
+
+.infoBox {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.company {
+  display: flex;
+  color: #b9b9b9;
+  text-align: left;
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 11px;
+}
+.proTitle,
+.profileBox,
+.subInfo,
+.mainPrice {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.company {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.proTitle {
+  color: #000;
+
+  font-family: Pretendard Variable;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.profileBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.profileText {
+  display: flex;
+  width: 124.225px;
+  height: 32.251px;
+  padding: 2.389px 7.167px;
+  justify-content: center;
+  align-items: center;
+  gap: 23.889px;
+  flex-shrink: 0;
+  border-radius: 4.778px;
+  background: #f5f5f5;
+  color: #5bab93;
+  margin-right: 10px;
+
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.description {
+  color: #666;
+  color: #5bab93;
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.subInfo {
+  display: flex;
+}
+
+.subTitle {
+  width: 100px;
+  color: #b9b9b9;
+  text-align: left;
+  font-family: Pretendard Variable;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.subDate {
+  color: #000;
+  margin-right: 10px;
+
+  font-family: Pretendard Variable;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dDay {
+  display: inline-flex;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  background: #e27a6c;
+
+  color: #fff;
+
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.priceText {
+  color: #e27a6c;
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 5px;
+}
+.realPrice {
+  display: flex;
+  color: #888;
+  text-align: left;
+}
+
+.progressBar {
+  width: 150px;
+  height: 11px;
+  border-radius: 5.972px;
+  background: #00664f;
+}
+
+.mainPrice {
+  display: flex;
+  margin: 10px 8px 10px 5px;
+  align-items: baseline;
+}
+
+.perText {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.realPrice {
+  margin-left: 10px;
+  color: #666;
+}
+
+.particBtn {
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  border-radius: 10px;
+  border: none;
+  background: var(--mint, #5bab93);
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  width: 332px;
+  height: 43px;
+  justify-content: center;
+  align-items: center;
+}
+
+.particBtn:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}
+
+footer {
+  width: 100%;
+  height: 340px;
+  background-color: #f9f9f9;
+  position: relative;
+  bottom: 0;
+}
+
+.navBar {
+  width: 100%;
+
+  height: 50px;
+  align-items: center;
+  flex: left;
+  display: flex;
+  text-align: center;
+}
+
+.navList {
+  width: 110px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navList.selected {
+  border-bottom: solid 2px #5bab93;
+}
