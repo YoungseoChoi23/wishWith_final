@@ -121,6 +121,16 @@ class DBhandler:
         print(item_info)
         return True
     
+    def insert_product_for_user(self, user_id, name):
+        users = self.db.child("user").get()
+        for res in users.each():
+            value = res.val()
+            if value['id'] == user_id:
+                self.db.child("user").child(res.key()).child("purchases").push(name)
+                return True  # 사용자를 찾았을 때 해당 사용자의 키를 반환
+        
+        
+        return False
 
 
 

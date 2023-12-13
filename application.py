@@ -206,5 +206,15 @@ def view_item_detail(name):
 
         return render_template("product_detail.html", name=name, data=data, per_person_price=per_person_price)
 
+@app.route("/myparticipation", methods=["GET"])  
+def my_participate(): 
+    if 'id' in session:
+        user_id = session['id']
+        name = request.args.get('name')
+
+        DB.insert_product_for_user(user_id, name)
+    flash("공구 참여가 완료되었습니다!")
+    return redirect(url_for('mypage'))
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5002, debug=True)

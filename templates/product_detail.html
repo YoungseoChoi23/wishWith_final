@@ -41,7 +41,7 @@
           </div>
         </div>
         
-        <button class="particBtn">공동 구매 참여하기</button>
+        <button class="particBtn" onclick="participate('{{ name }}')">공동 구매 참여하기</button>
 
     </div>
       <div class="navBar">
@@ -71,5 +71,9 @@
       .then((data) => {
         document.getElementById("footer").innerHTML = data;
       });
+
+    function participate(name) {
+    window.location.href = '/myparticipation?name=' + encodeURIComponent(name) ;
+}
   </script>
 </html>
