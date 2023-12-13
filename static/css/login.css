@@ -43,6 +43,7 @@
       format("truetype");
   font-display: swap;
 }
+
 * {
   padding: 0;
   margin: 0;
@@ -154,11 +155,14 @@ hr {
   width: 77px;
   color: #e27a6c;
 }
-#login-form > input[type="submit"] {
+
+.loginSubmit {
+  position: absolute;
   width: 332px;
   height: 43px;
-  margin-left: 28px;
-  margin-top: 64px;
+  margin: auto;
+  bottom: 0px;
+  left: calc(50% - 166px);
   border-radius: 10px;
   padding: 10px;
   background-color: #5bab93;
