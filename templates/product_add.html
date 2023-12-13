@@ -61,12 +61,14 @@
               </div>
             </div>
 
-            <input
-              type="text"
-              id="product-category"
-              placeholder="생필품"
-              name = "product-category"
-            />
+            <select id="product-category" name="product-category">
+              <option value="식료품">식료품</option>
+              <option value="생필품">생필품</option>
+              <option value="문구류">문구류</option>
+              <option value="패션잡화">패션잡화</option>
+              <option value="이화굿즈">이화굿즈</option>
+              <option value="기타">기타</option>
+          </select>
         </div>
       </div>
       <div class="form-section">
@@ -96,20 +98,7 @@
           />
         </div>
         
-        <div style="display: flex; flex-direction: row;  align-items: center;">
-          <div style="display: flex; width: 30%; flex-direction: column;">
-            <div class="form-title">공구 수량</div>
-            <div class="form-description">
-              공동구매를 진행할 상품의 수량을 입력해주세요.
-            </div>
-          </div>
-
-          <input
-            type="text"
-            id="product-number"
-            name="product-number"
-          />개
-      </div>
+        
       <div style="display: flex; flex-direction: row;  align-items: center;">
         <div style="display: flex; width: 30%; flex-direction: column;">
           <div class="form-title">공구 인원</div>
@@ -123,20 +112,7 @@
           id="people-number"
         />명
         </div>
-        <div style="display: flex; flex-direction: row;  align-items: center;">
-            <div style="display: flex; width: 30%; flex-direction: column;">
-            <div class="form-title">공구 장소</div>
-            <div class="form-description">
-                상품을 배부할 장소를 선택해주세요.
-            </div>
-            </div>
-
-        <input
-          type="text"
-          id="product-place"
-          name="product-place"
-        />
-    </div>
+        
     <div style="display: flex; flex-direction: row;  align-items: center;">
         <div style="display: flex; width: 30%; flex-direction: column;">
           <div class="form-title">한 줄 소개</div>
