@@ -224,7 +224,7 @@ def my_participate():
 
         DB.insert_product_for_user(user_id, name)
         flash("공구 참여가 완료되었습니다!")
-        return redirect(url_for('mypage'))
+        return redirect(url_for('partiProduct'))
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5002, debug=True)
