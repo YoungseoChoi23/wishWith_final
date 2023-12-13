@@ -94,10 +94,10 @@ class DBhandler:
 
         for res in items.each():
             key_value = res.key()
-            print("keyvalue", key_value)
+            
             if key_value == name:
                 target_value = res.val()
-                print("target", target_value)
+           
 
         return target_value
     
@@ -157,3 +157,24 @@ class DBhandler:
                 purchase_details[name] = detail
 
         return purchase_details
+    
+    def reg_review(self, data, img_path):
+            review_info ={
+                "key_name": data['key_name'],
+                "name": data['name'],
+                "title": data['title'],
+                "rate": data['rate'],
+                "review": data['review'],
+                "img_path": img_path,
+                "hidden_id": data['seller_id'],
+                "writer_id": data['writer_id']
+                
+            }
+            print("review_info", review_info)
+            
+            self.db.child("review").child(data['key_name']).set(review_info)
+            return True
+    
+    def get_reviews(self):
+        reviews = self.db.child("review").get().val()
+        return reviews

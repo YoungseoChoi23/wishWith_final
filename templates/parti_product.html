@@ -34,9 +34,7 @@
         </nav>
         <span class="reviewMaking">
     
-        <a href="{{ url_for('reviewAdd') }}" target="_self" id="reviewMaking"
-        >리뷰 작성하기</a
-      >
+      
     </span>
       </div>
       <div class="body middle">
@@ -53,7 +51,7 @@
               {% for row in row_data %}
             <div class="card-container1">
               {% for key, value in row %}
-              <div class="each-card-container" onclick="location.href='/view_detail/{{key}}/';"
+              <div class="each-card-container" 
               style="cursor: pointer" id="cont1-5">
                 <div class="inner-box1">
                   <div class="inner-textbox">
@@ -67,10 +65,11 @@
                   <div class="progress">
                     <div class="progress-text">
                       <div class="dday">{{value.start_date}}부터 {{value.end_date}}까지</div>
-                      <div class="discount">90%</div>
                       <br />
                     </div>
-                   
+                    <button class="reg_btn" onclick="handleReviewRegistration(event, '{{key}}');">
+                      리뷰 등록
+                    </button>
                   </div>
                 </div>
                 <div class="inner-box2">
@@ -106,10 +105,14 @@
   </body>
 </html>
 <script>
-fetch('/header')
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById('header').innerHTML = data;
-    });
-
-</script>
+  function handleReviewRegistration(event, key) {
+    event.stopPropagation(); // 상위 요소로의 이벤트 전파 중단
+    location.href = '/reg_review_init/' + key + '/';
+  }
+  
+  fetch('/header')
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById('header').innerHTML = data;
+      });
+  </script>

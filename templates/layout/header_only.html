@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../../static/css/header.css" />
+  </head>
+  <body>
+    <div class="head">
+      <div class="header">
+        <a href="{{url_for('index')}}" target="_self" id="logo"
+          ><img
+            src="../../static/img/위시윗 로고.png"
+            alt="logo"
+            width="248"
+            height="40"
+        /></a>
+        {% if session['id'] %}
+        <!-- 로그인 상태일 때 보여질 내용 -->
+        <div class="myInfo">
+          <a href="{{ url_for('productAdd') }}" target="_self" id="reg-btn"
+            >공동 구매 등록하기</a
+          >
+          <a href="{{ url_for('mypage') }}" target="_self" id="wish-btn"
+            >위시</a
+          >
+          <a href="{{ url_for('mypage') }}" target="_self" id="mypage-btn"
+            >{{session['id']}} 님</a
+          >
+          <a href="/logout" target="_self" id="login-btn">로그아웃</a>
+        </div>
+        {% else %}
+        <div class="myInfo">
+          <!-- 로그아웃 상태일 때 보여질 내용 -->
+          <a href="{{ url_for('login') }}" target="_self" id="login-btn"
+            >로그인/회원가입</a
+          >
+        </div>
+        {% endif %}
+
+    </div>
+  </body>
+</html>

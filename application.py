@@ -202,9 +202,6 @@ def my_reviews():
 def writtenReview():
     return render_template("written_review.html")
 
-@app.route("/review-add") 
-def reviewAdd():
-    return render_template('review_add.html')
 
 @app.route("/view_detail/<name>/")
 def view_item_detail(name):
@@ -223,8 +220,56 @@ def my_participate():
         name = request.args.get('name')
 
         DB.insert_product_for_user(user_id, name)
-        flash("공구 참여가 완료되었습니다!")
+        
         return redirect(url_for('partiProduct'))
+    
+@app.route("/reg_review_init/<name>/")
+def reg_review_init(name):
+    data = DB.get_item_byname(str(name))
+    return render_template("review_add.html", name=name, data=data)
+
+@app.route("/reg_review", methods=['POST'])
+def reg_review():
+    hidden_id = request.form.get("seller-id")
+    key_name = request.form.get("key")
+    writer_id = session['id']
+    print(request.files)
+    image_file = request.files.get("img_path")
+    image_file.save("static/img/{}".format(image_file.filename))
+    
+    # 'reviewStar' 키가 없을 경우 기본값으로 '0' 사용
+    rate = request.form.get('reviewStar', '0')
+
+    data = {
+        'key_name' : key_name,
+        'name': request.form['name'],
+        'title': request.form['title'],
+        'rate': rate,
+        'review': request.form['reviewContents'],
+        "img_path": "static/img/" + image_file.filename,
+        'seller_id' : hidden_id,
+        'writer_id': writer_id
+    }
+    DB.reg_review(data, image_file.filename)
+    return redirect(url_for('index'))
+
+@app.route("/review")
+def view_review():
+    page = request.args.get("page", 0, type=int)
+    per_page=5
+    per_row=5
+    row_count=int(per_page/per_row)
+    start_idx=per_page*page
+    end_idx=per_page*(page+1)
+    data = DB.get_reviews() #read the table
+    item_counts = len(data)
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    row_data = [list(data.items())[i * per_row:(i + 1) * per_row] for i in range(per_page // per_row)]
+    return render_template(
+        "all_review_check.html",
+        row_data=row_data, limit=per_page,page=page, page_count=int((item_counts/per_page)+1),total=item_counts)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5002, debug=True)
+

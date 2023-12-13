@@ -521,3 +521,12 @@ p {
   text-decoration: none;
   font-weight: bold;
 }
+
+.reg_btn {
+  z-index: 10;
+  background-color: #5bab93;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 2px 5px;
+}
