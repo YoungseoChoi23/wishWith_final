@@ -196,5 +196,15 @@ def writtenReview():
 def reviewAdd():
     return render_template('review_add.html')
 
+@app.route("/view_detail/<name>/")
+def view_item_detail(name):
+        data = DB.get_item_byname(str(name))
+        price = int(data['price'].replace(',', ''))
+        people_number = int(data['people_number'])
+
+        per_person_price = price / people_number
+
+        return render_template("product_detail.html", name=name, data=data, per_person_price=per_person_price)
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5002, debug=True)

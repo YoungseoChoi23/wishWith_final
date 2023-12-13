@@ -86,6 +86,19 @@ class DBhandler:
                 return user_info
         return None
     
+    def get_item_byname(self, name):
+        items = self.db.child("item").get()
+        target_value = ""
+
+        print("###########", name)
+
+        for res in items.each():
+            key_value = res.key()
+            if key_value == name:
+                target_value = res.val()
+
+        return target_value
+    
     def insert_item(self, data):
     # DB에 저장할 item 정보 구성
         item_info = {
@@ -107,4 +120,7 @@ class DBhandler:
         self.db.child("item").push(item_info)
         print(item_info)
         return True
+    
+
+
 
