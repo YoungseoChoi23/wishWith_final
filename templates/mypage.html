@@ -19,15 +19,15 @@
         <div class="user">
           <img class="userImg" src="../static/img/Ellipse 5.png" alt="userImg">
           <div class="nickname setting">
-            <span id="name">냥냥이</span>
+            <span id="name">{{user_info.name}}</span>
             <span id="settingImg"><img src="../static/img/Settings Gear.png" alt="settingImg"></span>
-          <div id="id">orangorang2</div>
+          <div id="id">{{user_info.id}}</div>
         </div>
         </div>
         <nav>
           <ul>
             <li class="selected"><a href="{{ url_for('mypage') }}" target="_self">마이 공구</a></li>
-            <li><a href="{{ url_for('myReview') }}" target="_self">마이 후기</a></li>
+            <li><a href="{{ url_for('my_reviews') }}" target="_self">마이 후기</a></li>
             <li><a href="{{ url_for('partiProduct') }}" target="_self">참여한 공구</a></li>
             <li><a href="{{ url_for('writtenReview') }}">작성한 리뷰</a></li>
           </ul>
@@ -42,7 +42,7 @@
       <div class="body middle">
         <div class="rating box">
           <div class="rating title">
-          냥냥이 님의 공동구매 평점은
+            {{user_info.name}} 님의 공동구매 평점은
         </div>
         <div class="rating contents">
           <span style="width: 70%"></span>

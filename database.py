@@ -42,3 +42,11 @@ class DBhandler:
             if value['id'] == id_ and value['pw'] == pw_:
                 return True
         return False
+    
+    def get_user_info(self, user_id):
+        users = self.db.child("user").get()
+        for res in users.each():
+            user_info = res.val()
+            if user_info['id'] == user_id:
+                return user_info
+        return None

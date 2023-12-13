@@ -30,26 +30,7 @@
       <div class="content">
         <div class="form-section">
             
-              <div style="display: flex; flex-direction: row; align-items: center;">
-              <div style="display: flex; width: 30%; flex-direction: column;">
-                <div class="form-title">상품 이미지</div>
-                <div class="form-description">
-                  상품의 이미지를 업로드해주세요.
-                </div>
-              </div>
-
-              <input type="file" id="img_path" name="img_path" accept="image/*">
-            </div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+          
           <div style="display: flex; flex-direction: row;  align-items: center;">
             <div style="display: flex; width: 30%; flex-direction: column;">
               <div class="form-title">상품 URL</div>
@@ -63,14 +44,13 @@
               id="product-url"
               placeholder="ex. https://naver.com"
             />
-            <div id="crawlBtn" class="register-btn">등록</div>
+            <button id="crawlBtn" class="register-btn" onclick="submitURL(event)">등록</button>
+
           </div>
           <div class="product-info">
             <div class="image-placeholder"></div>
             <div class="product-details">
-              <div>상품명: 해피데이 대용량 핫팩 150g, 25개</div>
-              <div>가격: 25,000원</div>
-              <div>배달비: 4,000원</div>
+              
             </div>
           </div>
           <div style="display: flex; flex-direction: row; align-items: center;">
@@ -176,33 +156,42 @@
   </form> <!-- 이거 추가 -->
 
   <script>
-    document.getElementById('crawlBtn').addEventListener('click', function (event) {
-        console.log("실행됨");
+    function submitURL() {
+      event.preventDefault(); // 폼의 기본 제출 행위를 중단
 
-        var productUrl = document.getElementById('product-url').value;
-        console.log("productUrl");
-        console.log(productUrl);
-        fetch('/crawl-url', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ url: productUrl }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            // 추출된 데이터를 콘솔에 출력
-            console.log("실행됨")
-            console.log(data);
+const url = document.getElementById("product-url").value; // 상품 URL 가져오기
+  localStorage.clear();
 
-            // 추출된 데이터를 페이지에 표시하는 로직 추가 (예시)
-            // document.querySelector('.image-placeholder').innerHTML = '<img src="' + data.image_link + '">';
-            // document.querySelector('.product-details').innerHTML = 
-            //     '<div>상품명: ' + data.title + '</div>' +
-            //     '<div>가격: ' + data.price_info + '</div>' +
-            //     '<div>배달비: ' + data.delivery_info + '</div>';
-        });
+  fetch("/process-url", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ url: url }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // 로컬 스토리지에 정보 저장
+      console.log(JSON.stringify(data));
+      document.querySelector('.product-details').innerHTML = 
+            '<div>상품명: ' + data.title + '</div>' +
+            '<div>가격: ' + data.price + '원</div>' +
+            '<div>배달비: ' + data.delivery + '원</div>'+
+            '<a href = "' + data.url + '"> 네이버쇼핑 바로가기</a>';
+
+        // 추가적으로 이미지를 표시하는 경우
+        if (data.image_url) {
+            document.querySelector('.image-placeholder').innerHTML = 
+                '<img src="' + data.image_url + '" alt="상품 이미지">';
+        }
+    })
+    .catch((error) => {
+      console.error(
+        "There was a problem with the fetch operation:",
+        error.message
+      );
     });
+}
 </script>
 
   </body>

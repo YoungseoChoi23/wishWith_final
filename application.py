@@ -3,6 +3,8 @@ import hashlib
 from bs4 import BeautifulSoup
 import requests
 from database import DBhandler
+import re
+
 
 
 app = Flask(__name__)
@@ -77,55 +79,59 @@ def logout_user():
 
 
 # 크롤링 코드
-@app.route('/crawl-url', methods=['POST'])
-def crawl_url():
-    data = request.json
+@app.route("/process-url", methods=['POST'])
+def process_url():
+    data = request.get_json()
     url = data['url']
-    print(url)
-    # URL에서 HTML을 가져온 후 BeautifulSoup로 파싱
+    
     response = requests.get(url)
-    print(response)
     response.raise_for_status()
+
     soup = BeautifulSoup(response.text, 'html.parser')
-    print(soup)
 
-    # 이미지 링크 추출
-    image_link = soup.find('img', class_='prod-image__detail')['src']
-    print(image_link)
-    # 제품명 추출
-    title = soup.find('h2', class_='prod-buy-header__title').get_text(strip=True)
+    title = soup.find('h3', class_='_22kNQuEXmb _copyable').text
+    price = soup.find('span', class_='_1LY7DqCnwR').text
+    delivery = soup.find('span', class_='bd_3uare').text
 
-    # 가격 정보 추출
-    sale_price_div = soup.select_one('.prod-sale-price')
-    sale_total_price = sale_price_div.select_one('strong').get_text(strip=True)
-    sale_unit_price = sale_price_div.select_one('.unit-price').get_text(strip=True)
+    img_element = soup.find('img', class_='_2RYeHZAP_4')
 
-    coupon_price_div = soup.select_one('.prod-coupon-price')
-    coupon_total_price = coupon_price_div.select_one('strong').get_text(strip=True)
-    coupon_unit_price = coupon_price_div.select_one('.unit-price').get_text(strip=True)
+    image_url = None
+    
+    if img_element:
+    # src 속성 추출
+        image_url = img_element['src']
+        print("Extracted Image URL:", image_url)
+    else:
+        print("Image tag with specified class not found.")
 
-    delivery_info = soup.select_one('.prod-shipping-fee-message em').get_text(strip=True)
-    arrival_info = soup.select_one('.prod-pdd em').get_text(strip=True)
-
-    # 추출된 정보를 JSON 형태로 반환
-    return jsonify({
-        'image_link': image_link,
+    return {
         'title': title,
-        'price_info': sale_total_price,
-        'per_price_info': sale_unit_price,
-        'unit_price_info': coupon_total_price,
-        'per_unit_price_info': coupon_unit_price,
-        'delivery_info': delivery_info,
-        'arrival_info': arrival_info
-    })
+        'price': price,
+        'delivery': delivery,
+        'image_url': image_url,
+        'url' : url
+    }
+
+
+
 
 @app.route('/mypage')
 def mypage():
-    return render_template('mypage.html')
+    user_id = session['id']
+    user_info = DB.get_user_info(user_id)
+    print(user_info)
+    return render_template('mypage.html', user_info=user_info)
 
-@app.route("/my-review")
-def myReview():
-    return render_template('my_review.html')
+@app.route('/my-reviews')
+def my_reviews():
+    if 'id' not in session:
+        flash("로그인 후 이용 가능합니다.")
+        return redirect(url_for('index'))
+
+    user_id = session['id']
+    user_reviews = DB.get_user_reviews(user_id)
+    return render_template('my_review.html', reviews=user_reviews)
+
 
 @app.route("/parti-product") 
 def partiProduct():
