@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../static/css/mypage.css"
+    />
+  </head>
+  <body>  
+    <div id="header"></div>
+    
+    </div>
+    <div class="body">
+      <div class="body top">
+        <div class="user">
+          <img class="userImg" src="../static/img/Ellipse 5.png" alt="userImg">
+          <div class="nickname setting">
+            <span id="name">{{user_info.name}}</span>
+            <span id="settingImg"><img src="../static/img/Settings Gear.png" alt="settingImg"></span>
+          <div id="id">{{user_info.id}}</div>
+        </div>
+        </div>
+        <nav>
+          <ul>
+            <li class="selected"><a href="{{ url_for('mypage') }}" target="_self">마이 공구</a></li>
+            <li><a href="{{ url_for('my_reviews') }}" target="_self">마이 후기</a></li>
+            <li><a href="{{ url_for('partiProduct') }}" target="_self">참여한 공구</a></li>
+            <li><a href="{{ url_for('written_reviews') }}">작성한 리뷰</a></li>
+          </ul>
+        </nav>
+        <span class="reviewMaking">
+    
+        
+    </span>
+      </div>
+      <div class="body middle">
+        <div class="rating box">
+          <div class="rating title">
+            {{user_info.name}} 님의 공동구매 평점은
+        </div>
+        <div class="rating contents">
+          <span style="width: 70%"></span>
+        </div>
+      </div>
+        <div class="container">
+          {% if total > 0 %}
+              {% for row in row_data %}
+            <div class="card-container1">
+              {% for key, value in row %}
+              <div class="each-card-container" onclick="location.href='/view_detail/{{key}}/';"
+              style="cursor: pointer" id="cont1-5">
+                <div class="inner-box1">
+                  <div class="inner-textbox">
+                    <div class="category">
+                      <span class="category-label">{{value.product_category}} |  </span>
+                      <span class="store">{{value.delivery}}</span>
+                    </div>
+                    <div class="product-name">{{ value.title }}</div>
+                    <div class="price">{{value.people_number}}명, {{value.price}}원</div>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-text">
+                      <div class="dday">{{value.start_date}}부터 {{value.end_date}}까지</div>
+                      <br />
+                    </div>
+                    
+                   
+                  </div>
+                </div>
+                <div class="inner-box2">
+                  <img src="{{ value.image_url }}" style="width: 100%; height: 100%; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+                  
+                  </svg>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% endfor %}
+
+      
+          <div class="page-wrap">
+              <div class="page-nation">
+                  <ul>
+                      <li>
+                      {% for i in range(page_count)%}
+                      <a href="{{url_for('mypage', page=i)}}" color="black">{{i+1}}</a>
+                      {% endfor %} </li>
+                  </ul>
+              </div>
+          </div>
+          {% else %}
+          <p>등록된 상품이 없습니다.</p>
+          {% endif %}
+          </div>
+  </body>
+</html>
+<script>
+fetch('/header')
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById('header').innerHTML = data;
+    });
+
+</script>

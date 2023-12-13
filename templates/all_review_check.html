@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../static/css/all_review_check.css"
+    />
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="banner"></div>
+    <div class="body">
+      <span class="sort">
+        <img src="../static/img/Group.png" alt="sorting img" /> 최신순
+      </span>
+      
+        
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+          </div>
+        </div>
+        <div class="container">
+        {% if total > 0 %}
+        {% for row in row_data %}
+        {% for key, value in row %}
+        <div class="UImodal" onClick="showModal(this)">
+          <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="nickname box">
+                    <span class="nickname img"></span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <circle cx="8" cy="8" r="8" fill="#00664F" />
+                    </svg>
+                    <span id="name">{{value.writer_id}}</span>
+                  </div>
+                  <div class="review contents">
+                    {{value.review}}
+                  </div>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="product name">{{value.name}}</div>
+            </div>
+            <img src="../static/img/{{value.img_path}}" class="card top"></div>
+          </div>
+   
+        {% endfor %}
+        {% endfor %}
+      </div>
+      </div>
+
+      
+    </div>
+    <div class="page-wrap">
+      <div class="page-nation">
+          <ul>
+              <li>
+              {% for i in range(page_count)%}
+              <a href="{{url_for('view_review', page=i)}}" color="black">{{i+1}}</a>
+              {% endfor %} </li>
+          </ul>
+      </div>
+  </div>
+  {% else %}
+  <p>등록된 상품이 없습니다.</p>
+  {% endif %}
+  </div>
+    <div id="footer"></div>
+  </body>
+</html>
+<script>
+  fetch("/header-only")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("header").innerHTML = data;
+    });
+
+  fetch("/footer")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("footer").innerHTML = data;
+    });
+
+  var modal = document.getElementById("myModal");
+  var modalText = document.getElementById("modalBody");
+
+  // 모달 창을 여는 함수
+  function showModal(card) {
+    var text = card.textContent || card.innerText; // 카드의 텍스트를 가져옵니다
+    modalBody.innerHTML = text; // 모달 본문에 텍스트 설정
+    modal.style.display = "block"; // 모달 창을 표시합니다
+  }
+
+  // 모달 창의 닫기 버튼
+  var span = document.getElementsByClassName("close")[0];
+
+  // 닫기 버튼 클릭 시 모달 창 닫기
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // 모달 창 바깥을 클릭하면 닫히도록
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>

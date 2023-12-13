@@ -1,0 +1,532 @@
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  font-weight: 600;
+  font-style: normal;
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-SemiBold.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard-Bold";
+  font-weight: 700;
+  font-style: normal;
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot");
+  src: url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff2")
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.woff")
+      format("woff"),
+    url("https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.ttf")
+      format("truetype");
+  font-display: swap;
+}
+
+html {
+  margin: 0 auto;
+  overflow-x: hidden;
+  position: relative;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.body.top {
+  width: 100%;
+  height: 222px;
+  border-bottom: 2px solid #d9d9d9;
+}
+.body.middle {
+  display: flex;
+  width: 1530px;
+  justify-content: space-between;
+}
+.user {
+  margin-top: 50px;
+  display: flex;
+}
+
+.userImg {
+  margin-left: 100px;
+}
+
+#name {
+  color: #000;
+  font-family: Pretendard Variable;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  white-space: nowrap;
+}
+.nickname.setting {
+  margin-left: 15px;
+  margin-top: 15px;
+}
+#id {
+  margin-bottom: 10px;
+  color: #404040;
+  font-family: Pretendard Variable;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+#reviewMaking {
+  border-radius: 20px;
+  border: 1px solid var(--mint, #5bab93);
+  background: #fff;
+  display: inline-flex;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #000;
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 16px;
+  font-style: normal;
+  text-decoration: none;
+  font-weight: 600;
+  line-height: normal;
+  position: relative;
+  right: -600px;
+}
+
+.selected a {
+  border-bottom: 2px solid #5bab93;
+}
+
+ul {
+  position: relative;
+  bottom: -55px;
+  list-style-type: none;
+  margin-top: 30px;
+  margin-left: 50px;
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  text-decoration: none;
+  padding: 12px 20px;
+  color: #000;
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+li a:hover {
+  color: #5bab93;
+}
+
+.rating.box {
+  margin-top: 95px;
+  margin-left: 150px;
+  margin-right: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rating.title {
+  color: #000;
+  font-family: Pretendard Variable;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 20px auto;
+  width: 300px;
+}
+.rating.contents {
+  background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png)
+    no-repeat;
+  width: 121px;
+  height: 20px;
+  position: relative;
+  margin: 20px auto;
+}
+.rating.contents span {
+  position: absolute;
+  background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);
+  width: auto;
+  height: 20px;
+}
+
+.UIcard {
+  display: flex;
+  margin: 60px 20px 30px 0px;
+  position: relative;
+  width: 270px;
+  height: 388.98px;
+  padding: 0;
+  flex: 0 1 auto;
+}
+
+.card.bottom {
+  width: 268px;
+  height: 120.98px;
+  left: 0.16px;
+  top: 268px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: absolute;
+  background: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px #d9d9d9 solid;
+}
+.card.top {
+  width: 268.02px;
+  height: 268.02px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #d9d9d9;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px #d9d9d9 solid;
+}
+.card.textbox {
+  text-align: left;
+  padding-top: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+.category {
+  padding-bottom: 5px;
+}
+.category.label {
+  color: #46a1bb;
+  font-size: 14px;
+  font-family: Pretendard Variable;
+  font-weight: 600;
+  word-wrap: break-word;
+  text-align: left;
+}
+.store {
+  color: #00664f;
+  font-size: 14px;
+  font-family: Pretendard Variable;
+  font-weight: 600;
+  word-wrap: break-word;
+  text-align: left;
+}
+.product.name {
+  color: black;
+  font-size: 16px;
+  font-family: Pretendard Variable;
+  font-weight: 600;
+  word-wrap: break-word;
+  text-align: left;
+  padding-bottom: 5px;
+}
+.additional.text {
+  color: #b9b9b9;
+  text-align: left;
+  font-family: Pretendard Variable;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.page.number {
+  display: flex; /* Flexbox 레이아웃 사용 */
+  flex-direction: row; /* 아이템들을 가로로 배치 */
+  justify-content: center;
+  flex-wrap: nowrap; /* 화면 크기가 줄어들어도 내용을 다음 줄로 넘기지 않음 */
+  margin-top: 70px;
+  margin-left: 315px;
+}
+.page.number a {
+  color: #b9b9b9;
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 14.33px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-right: 35px;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.page.number a:hover {
+  background-color: #5bab93;
+  color: #fffcf0;
+}
+
+html {
+  position: relative;
+}
+body {
+  width: 100%;
+  background: white;
+}
+.banner {
+  background-color: #fffcf0;
+  width: 100%;
+  height: 380px;
+  border: 1px solid #d9d9d9;
+  margin-bottom: 80px;
+}
+p {
+  text-align: left;
+  font-family: Pretendard Variable;
+  font-weight: 400;
+  font-size: 14px;
+}
+.card-line1 {
+  margin-top: 50px;
+  width: 1550px;
+}
+.card-container1 {
+  width: 100%;
+  padding-top: 30px;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.each-card-container {
+  display: flex;
+  position: relative;
+  width: 270px;
+  height: 432.02px;
+}
+.inner-box1 {
+  width: 268px;
+  height: 140px;
+  left: 0.16px;
+  top: 268px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: absolute;
+  background: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px #d9d9d9 solid;
+}
+.inner-box2 {
+  width: 268.02px;
+  height: 268.02px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #d9d9d9;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px #d9d9d9 solid;
+}
+.inner-textbox {
+  text-align: left;
+  padding-top: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+.category {
+  padding-bottom: 5px;
+}
+.category-label {
+  color: #46a1bb;
+  font-size: 14px;
+  font-family: Pretendard Variable;
+  font-weight: 600;
+  word-wrap: break-word;
+  text-align: left;
+}
+.store {
+  color: #00664f;
+  font-size: 14px;
+  font-family: Pretendard Variable;
+  font-weight: 600;
+  word-wrap: break-word;
+  text-align: left;
+}
+.product-name {
+  color: black;
+  font-size: 16px;
+  font-family: Pretendard Variable;
+  font-weight: 600;
+  word-wrap: break-word;
+  text-align: left;
+  padding-bottom: 5px;
+}
+.price {
+  color: #b9b9b9;
+  font-size: 14px;
+  font-family: Pretendard Variable;
+  font-weight: 400;
+  word-wrap: break-word;
+  text-align: left;
+}
+.progress {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.progress-text {
+  padding-bottom: 4px;
+}
+.dday {
+  height: 18px;
+  position: absolute;
+  text-align: center;
+  color: #e27a6c;
+  font-size: 12px;
+  font-family: Pretendard Variable;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+.discount {
+  width: 33.96px;
+  height: 18.36px;
+  position: absolute;
+  text-align: right;
+  right: 20px;
+  color: #00664f;
+  font-size: 14px;
+  font-family: Pretendard Variable;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+.progress-bar-bg {
+  width: 228px;
+  height: 12px;
+  position: absolute;
+  background: #d9d9d9;
+  border-radius: 5.97px;
+  overflow: hidden; /* 클리핑 추가 */
+}
+.progress-bar {
+  height: 100%; /* 높이 100%로 설정 */
+  position: relative;
+  background: #00664f;
+  border-radius: 5.97px;
+  transition: width 0.5s ease; /* 움직임 효과 추가 */
+}
+.UIcard {
+  margin-top: 60px;
+  position: relative;
+  width: 270px;
+  height: 388.98px;
+  padding: 0;
+  margin: 0;
+}
+.card.bottom {
+  width: 268px;
+  height: 145.98px;
+  left: 0.16px;
+  top: 268px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: absolute;
+  background: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px #d9d9d9 solid;
+}
+#name {
+  color: #00664f;
+  font-family: Pretendard Variable;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400px;
+  line-height: 18px;
+  flex-shrink: 0;
+}
+.card.top {
+  width: 268.02px;
+  height: 268.02px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #d9d9d9;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px #d9d9d9 solid;
+}
+.card.textbox {
+  text-align: left;
+  padding-top: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+.line {
+  width: 268px;
+  height: 1px;
+  background-color: #d9d9d9;
+  padding: 0;
+  margin: 0;
+}
+.product.name {
+  color: #b9b9b9;
+  text-align: center;
+  font-family: Pretendard Variable;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 13px;
+}
+.heart {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
+}
+
+.page-nation li {
+  list-style: none;
+}
+.page-wrap {
+  text-align: center;
+  font-size: 0;
+}
+.page-nation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.page-nation a {
+  display: block;
+  margin: 0 3px;
+  float: left;
+  border: 1px solid #e6e6e6;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  background-color: #fff;
+  font-size: 13px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.reg_btn {
+  z-index: 10;
+  background-color: #5bab93;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 2px 5px;
+}

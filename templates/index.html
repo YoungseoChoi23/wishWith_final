@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../static/css/product_list.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  </head>
+  <div id="header"></div>
+  <img src = "../../static/img/banner.png" class="banner"></div>
+  <body>
+    {% if total > 0 %}
+    <div class="card-line1">
+        {% for row in row_data %}
+      <div class="card-container1">
+        {% for key, value in row %}
+        <div class="container" onclick="location.href='/view_detail/{{key}}/';"
+        style="cursor: pointer" id="cont1-5">
+          <div class="inner-box1">
+            <div class="inner-textbox">
+              <div class="category">
+                <span class="category-label">{{value.product_category}} |  </span>
+                <span class="store">{{value.delivery}}</span>
+              </div>
+              <div class="product-name" id="product_name" data-product-name="{{ key }}">{{ value.title }}</div>
+              <div class="price">{{value.people_number}}명, {{value.price}}원</div>
+            </div>
+            <div class="progress">
+              <div class="progress-text">
+                <div class="dday">{{value.start_date}}부터 {{value.end_date}}까지</div>
+                <div class="discount">90%</div>
+                <br />
+              </div>
+             
+            </div>
+          </div>
+          <div class="inner-box2">
+            <img src="{{ value.image_url }}" style="width: 100%; height: 100%; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+            <svg
+              id="heart"
+              class="heart"
+              width="28"
+              height="24"
+              viewBox="0 0 28 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M27.0606 7.06297C27.0606 8.66768 26.4521 10.2862 25.2213 11.5174L23.1745 13.5648L14.3649 22.3768C14.3234 22.4183 14.3096 22.4322 14.2681 22.4598C14.2266 22.4322 14.2128 22.4183 14.1713 22.3768L3.31495 11.5174C2.0841 10.2862 1.47559 8.68151 1.47559 7.06297C1.47559 5.44444 2.0841 3.82591 3.31495 2.59472C5.77664 0.146162 9.7596 0.146162 12.2213 2.59472L14.2543 4.64209L16.3011 2.59472C18.7628 0.146162 22.7319 0.146162 25.1936 2.59472C26.4521 3.82591 27.0606 5.43061 27.0606 7.06297Z"
+                stroke="#E27A6C"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="page-wrap">
+        <div class="page-nation">
+            <ul>
+                <li>
+                {% for i in range(page_count)%}
+                <a href="{{url_for('index', page=i)}}" color="black">{{i+1}}</a>
+                {% endfor %} </li>
+            </ul>
+        </div>
+    </div>
+    {% else %}
+    <p>등록된 상품이 없습니다.</p>
+    {% endif %}
+    </body>
+<div id="footer"></div>
+  <script>
+    fetch("/header")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("header").innerHTML = data;
+      });
+    fetch("/footer")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("footer").innerHTML = data;
+    });
+    $(document).ready(function () {
+    $(".container").each(function () {
+      var container = $(this);
+      var heart = container.find(".heart");
+      showHeart(container, heart);
+    });
+  });
+
+  function showHeart(container, heart) {
+    console.log("showHeart called");
+    var productName = container.find(".product-name").data("product-name");
+    $.ajax({
+      type: 'GET',
+      url: '/show_heart/' + productName + '/',
+      data: {},
+      success: function (response) {
+        let my_heart = response['my_heart'];
+        if (my_heart['interested'] == 'Y') {
+          heart.css("fill", "#E27A6C");
+          heart.click(function (event) {
+            event.stopPropagation();
+            unlike(productName); // Pass productName to unlike
+          });
+        } else {
+          heart.css("fill", "none");
+          heart.click(function (event) {
+            event.stopPropagation();
+            like(productName); // Pass productName to like
+          });
+        }
+
+        container.attr("onclick", 'location.href="/view_detail/' + productName + '/";');
+      }
+    });
+  }
+
+  function like(productName) {
+    $.ajax({
+      type: 'POST',
+      url: '/like/' + productName + '/', // Use productName in the URL
+      data: {
+        interested: "Y"
+      },
+      success: function (response) {
+        alert(response['msg']);
+        window.location.reload();
+      }
+    });
+  }
+
+  function unlike(productName) {
+    $.ajax({
+      type: 'POST',
+      url: '/unlike/' + productName + '/', // Use productName in the URL
+      data: {
+        interested: "N"
+      },
+      success: function (response) {
+        alert(response['msg']);
+        window.location.reload();
+      }
+    });
+  }
+
+  </script>
+
+</body>
+</html>
+
+</html>

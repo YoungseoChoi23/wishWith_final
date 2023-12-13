@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/my_review.css" />
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="banner"></div>
+    <div class="body">
+      <div>
+        <div class="user">
+          <img
+            class="userImg"
+            src="../static/img/Ellipse 5.png"
+            alt="userImg"
+          />
+          <div class="nickname setting">
+            <span id="name">{{user_info.name}}</span>
+            <span id="settingImg"
+              ><img src="../static/img/Settings Gear.png" alt="settingImg"
+            /></span>
+            <div id="id">{{user_info.id}}</div>
+          </div>
+          <nav>
+            <ul>
+              <li>
+                <a href="{{ url_for('mypage') }}" target="_self">마이 공구</a>
+              </li>
+              <li>
+                <a href="{{ url_for('my_reviews') }}" target="_self"
+                  >마이 후기</a
+                >
+              </li>
+              <li>
+                <a href="{{ url_for('partiProduct') }}" target="_self"
+                  >참여한 공구</a
+                >
+              </li>
+              <li class="selected">
+                <a href="{{ url_for('written_reviews') }}">작성한 리뷰</a>
+              </li>
+            </ul>
+          </nav>
+          <span class="reviewMaking"> </span>
+        </div>
+        <div>
+          {% if total > 0 %} {% for row in row_data %}
+          <div class="container">
+            {% for key, value in row%}
+            <div class="UIcard">
+              <div class="card bottom">
+                <div class="card textbox">
+                  <div class="text">
+                    <div class="nickname box">
+                      <span class="nickname img"></span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <circle cx="8" cy="8" r="8" fill="#00664F" />
+                      </svg>
+                      <span id="name">{{value.writer_id}}</span>
+                    </div>
+                    <div class="review contents">{{value.review}}</div>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="product name">{{value.name}}</div>
+              </div>
+              <img src="../static/img/{{value.img_path}}" class="card top" />
+            </div>
+          </div>
+
+          {% endfor %} {% endfor %}
+        </div>
+      </div>
+      <div class="page-wrap">
+        <div class="page-nation">
+          <ul>
+            <li>
+              {% for i in range(page_count)%}
+              <a href="{{url_for('written_reviews', page=i)}}" color="black"
+                >{{i+1}}</a
+              >
+              {% endfor %}
+            </li>
+          </ul>
+        </div>
+      </div>
+      {% else %}
+      <p>등록된 상품이 없습니다.</p>
+      {% endif %}
+    </div>
+    <div id="footer"></div>
+  </body>
+</html>
+<script>
+  fetch("/header-only")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("header").innerHTML = data;
+    });
+
+  fetch("/footer")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
