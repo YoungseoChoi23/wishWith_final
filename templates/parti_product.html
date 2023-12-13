@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../static/css/my_review.css"
+    />
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="banner"></div>
+    <div class="body">
+      <div class="body top">
+        <div class="user">
+          <img class="userImg" src="../static/img/Ellipse 5.png" alt="userImg">
+          <div class="nickname setting">
+            <span id="name">냥냥이</span>
+            <span id="settingImg"><img src="../static/img/Settings Gear.png" alt="settingImg"></span>
+          <div id="id">orangorang2</div>
+        </div>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('mypage') }}" target="_self">마이 공구</a></li>
+            <li><a href="{{ url_for('myReview') }}" target="_self">마이 후기</a></li>
+            <li class="selected"><a href="{{ url_for('partiProduct') }}" target="_self">참여한 공구</a></li>
+            <li><a href="{{ url_for('writtenReview') }}">작성한 리뷰</a></li>
+          </ul>
+        </nav>
+        <span class="reviewMaking">
+    
+        <a href="{{ url_for('reviewAdd') }}" target="_self" id="reviewMaking"
+        >리뷰 작성하기</a
+      >
+    </span>
+      </div>
+      <div class="body middle">
+        <div class="container">
+          <div id="card1">
+            <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="category">
+                    <span class="category label"
+                      >생필품 | 이화 파빌리온 앞 |
+                    </span>
+                    <span class="store">쿠팡</span>
+                  </div>
+                  <div class="product name">
+                    해피데이 포켓형 대용량 핫팩 150g
+                  </div>
+                  <div class="additional text">
+                    추워지는 날씨 핫팩으로 함께해요!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card top"></div>
+          </div>
+        </div>
+          <div id="card2">
+            <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="category">
+                    <span class="category label"
+                      >생필품 | 이화 파빌리온 앞 |
+                    </span>
+                    <span class="store">쿠팡</span>
+                  </div>
+                  <div class="product name">
+                    해피데이 포켓형 대용량 핫팩 150g
+                  </div>
+                  <div class="additional text">
+                    추워지는 날씨 핫팩으로 함께해요!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card top"></div>
+          </div>
+        </div>
+          <div id="card3">
+            <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="category">
+                    <span class="category label"
+                      >생필품 | 이화 파빌리온 앞 |
+                    </span>
+                    <span class="store">쿠팡</span>
+                  </div>
+                  <div class="product name">
+                    해피데이 포켓형 대용량 핫팩 150g
+                  </div>
+                  <div class="additional text">
+                    추워지는 날씨 핫팩으로 함께해요!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card top"></div>
+          </div>
+        </div>
+          <div id="card4">
+            <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="category">
+                    <span class="category label"
+                      >생필품 | 이화 파빌리온 앞 |
+                    </span>
+                    <span class="store">쿠팡</span>
+                  </div>
+                  <div class="product name">
+                    해피데이 포켓형 대용량 핫팩 150g
+                  </div>
+                  <div class="additional text">
+                    추워지는 날씨 핫팩으로 함께해요!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card top"></div>
+          </div>
+        </div>
+        <div id="card5">
+          <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="category">
+                    <span class="category label"
+                      >생필품 | 이화 파빌리온 앞 |
+                    </span>
+                    <span class="store">쿠팡</span>
+                  </div>
+                  <div class="product name">
+                    해피데이 포켓형 대용량 핫팩 150g
+                  </div>
+                  <div class="additional text">
+                    추워지는 날씨 핫팩으로 함께해요!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card top"></div>
+          </div>
+        </div>
+        <div id="card6">
+          <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="category">
+                    <span class="category label"
+                      >생필품 | 이화 파빌리온 앞 |
+                    </span>
+                    <span class="store">쿠팡</span>
+                  </div>
+                  <div class="product name">
+                    해피데이 포켓형 대용량 핫팩 150g
+                  </div>
+                  <div class="additional text">
+                    추워지는 날씨 핫팩으로 함께해요!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card top"></div>
+          </div>
+        </div>
+        <div id="card7">
+          <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="category">
+                    <span class="category label"
+                      >생필품 | 이화 파빌리온 앞 |
+                    </span>
+                    <span class="store">쿠팡</span>
+                  </div>
+                  <div class="product name">
+                    해피데이 포켓형 대용량 핫팩 150g
+                  </div>
+                  <div class="additional text">
+                    추워지는 날씨 핫팩으로 함께해요!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card top"></div>
+          </div>
+        </div>
+        <div id="card8">
+          <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="category">
+                    <span class="category label"
+                      >생필품 | 이화 파빌리온 앞 |
+                    </span>
+                    <span class="store">쿠팡</span>
+                  </div>
+                  <div class="product name">
+                    해피데이 포켓형 대용량 핫팩 150g
+                  </div>
+                  <div class="additional text">
+                    추워지는 날씨 핫팩으로 함께해요!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card top"></div>
+          </div>
+        </div>
+        <div id="card9">
+          <div class="UIcard">
+            <div class="card bottom">
+              <div class="card textbox">
+                <div class="text">
+                  <div class="category">
+                    <span class="category label"
+                      >생필품 | 이화 파빌리온 앞 |
+                    </span>
+                    <span class="store">쿠팡</span>
+                  </div>
+                  <div class="product name">
+                    해피데이 포켓형 대용량 핫팩 150g
+                  </div>
+                  <div class="additional text">
+                    추워지는 날씨 핫팩으로 함께해요!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card top"></div>
+          </div>
+        </div>
+      </div>
+        <div class="page number">
+          <div><a href="#">1</a></div>
+          <div><a href="#">2</a></div>
+          <div><a href="#">3</a></div>
+          <div><a href="#">4</a></div>
+        
+      </div>
+    </div>
+    <div id="footer"></div>
+  </body>
+</html>
+<script>
+  fetch('/header-only')
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById('header').innerHTML = data;
+      });
+  
+  fetch('/footer')
+  .then((response) => response.text())
+  .then((data) => {
+    document.getElementById('footer').innerHTML = data;
+  });
+  </script>

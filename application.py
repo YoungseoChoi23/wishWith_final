@@ -119,5 +119,25 @@ def crawl_url():
         'arrival_info': arrival_info
     })
 
+@app.route('/mypage')
+def mypage():
+    return render_template('mypage.html')
+
+@app.route("/my-review")
+def myReview():
+    return render_template('my_review.html')
+
+@app.route("/parti-product") 
+def partiProduct():
+    return render_template("parti_product.html")
+
+@app.route("/written-review")
+def writtenReview():
+    return render_template("written_review.html")
+
+@app.route("/review-add") 
+def reviewAdd():
+    return render_template('review_add.html')
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5002, debug=True)

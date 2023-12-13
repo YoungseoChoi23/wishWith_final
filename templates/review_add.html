@@ -1,0 +1,101 @@
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/static/css/review_add.css" />
+</head>
+<body>
+  <div id="header"></div>
+  <div class="banner"></div>
+
+  <form
+    class="mb-3"
+    name="myform"
+    id="myform"
+    method="post"
+    action="/reg_review"
+    enctype="multipart/form-data"
+  >
+    <span class="back-arrow"
+      ><a href="{{ url_for('mypage') }}" target="_self">&larr;</a></span
+    >
+    <div class="submit-section">
+      <button id="button1">임시저장</button>
+      <input type="submit" id="button2" value="등록하기" />
+    </div>
+    <p id="title1">리뷰 작성하기</p>
+
+    <div class="input-review">
+      <div class="form-section">
+        <div class="product">
+          상품명:<input type="text" name="name" id="name" value="{{name}}" />
+          <br />
+        </div>
+        <div class="review-title">
+          리뷰 제목:
+          <input type="text" name="title" id="title" value="" /><br />
+        </div>
+        <div class="review-content">
+          <div>
+            리뷰 작성
+            <p>
+              공동 구매에 대한 리뷰를 작성해주세요.<br />작성해주신 리뷰는 리뷰
+              조회 페이지에 노출됩니다.
+            </p>
+          </div>
+          <textarea
+            class="col-auto form-control"
+            id="review-content"
+            type="text"
+            name="reviewContents"
+            placeholder="리뷰를 남겨주세요 감사합니다!"
+          ></textarea>
+        </div>
+        <div class="star">
+          <span class="text-bold">별점을 선택해주세요</span>
+          <input type="radio" name="reviewStar" value="5" id="rate1" /><label
+            for="rate1"
+            >★</label
+          >
+          <input type="radio" name="reviewStar" value="4" id="rate2" /><label
+            for="rate2"
+            >★★</label
+          >
+          <input type="radio" name="reviewStar" value="3" id="rate3" /><label
+            for="rate3"
+            >★★★</label
+          >
+          <input type="radio" name="reviewStar" value="2" id="rate4" /><label
+            for="rate4"
+            >★★★★</label
+          >
+          <input type="radio" name="reviewStar" value="1" id="rate5" /><label
+            for="rate5"
+            >★★★★★</label
+          >
+        </div>
+        <div class="review-image">
+          리뷰이미지를 업로드해주세요
+          <input
+            type="file"
+            id="img_path"
+            name="img_path"
+            accept="image/*"
+          /><br /><br />
+        </div>
+      </div>
+    </div>
+  </form>
+  <div id="footer"></div>
+</body>
+<script>
+  fetch('/header-only')
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById('header').innerHTML = data;
+    });
+
+  fetch('/footer')
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById('footer').innerHTML = data;
+    });
+</script>
