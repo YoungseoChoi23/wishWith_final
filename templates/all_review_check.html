@@ -12,13 +12,11 @@
   </head>
   <body>
     <div id="header"></div>
-    <div class="banner"></div>
     <div class="body">
       <span class="sort">
         <img src="../static/img/Group.png" alt="sorting img" /> 최신순
       </span>
-      {% if total > 0 %}
-      {% for row in row_data %}
+      {% if total > 0 %} {% for row in row_data %}
       <div class="container">
         <div id="myModal" class="modal">
           <div class="modal-content">
@@ -40,25 +38,36 @@
                       </svg>
                       <span id="modal_name"></span>
                     </div>
-                    <div class="modalcontents", id="modal_content">
-                    </div>
+                    <div class="modalcontents" , id="modal_content"></div>
                   </div>
                 </div>
                 <div class="line"></div>
                 <div class="modalprodname" id="modal_product_name"></div>
-                </div>
+              </div>
               <div class="card top">
-                   <img src="" style="width: 100%; height: 100%; border-top-left-radius: 20px; border-top-right-radius: 20px;"
-                        id="modal_img">
+                <img
+                  src=""
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                  "
+                  id="modal_img"
+                />
               </div>
             </div>
             <div id="modlBody"></div>
           </div>
         </div>
-        
+
         <!-- 여기가 카드. 위쪽은 모달. -->
         {% for key, value in row %}
-        <div class="UImodal" onClick="showModal(this)" data-review="{{value.review}}">
+        <div
+          class="UImodal"
+          onClick="showModal(this)"
+          data-review="{{value.review}}"
+        >
           <div class="UIcard">
             <div class="card bottom">
               <div class="card textbox">
@@ -76,13 +85,22 @@
                     </svg>
                     <span id="name">{{value.name}}</span>
                   </div>
-                    <div class="product name", id="product_name">{{value.title}}</div>
+                  <div class="product name" , id="product_name">
+                    {{value.title}}
                   </div>
                 </div>
-              
+              </div>
             </div>
             <div class="card top">
-              <img src="/static/img/{{value.img_path}}" style="width: 100%; height: 100%; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+              <img
+                src="/static/img/{{value.img_path}}"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  border-top-left-radius: 20px;
+                  border-top-right-radius: 20px;
+                "
+              />
             </div>
           </div>
         </div>
@@ -106,46 +124,46 @@
   </body>
 </html>
 <script>
-  fetch('/header-only')
+  fetch("/header-only")
     .then((response) => response.text())
     .then((data) => {
-      document.getElementById('header').innerHTML = data;
+      document.getElementById("header").innerHTML = data;
     });
 
-  fetch('/footer')
+  fetch("/footer")
     .then((response) => response.text())
     .then((data) => {
-      document.getElementById('footer').innerHTML = data;
+      document.getElementById("footer").innerHTML = data;
     });
 
-  var modal = document.getElementById('myModal');
-  var modalText = document.getElementById('modalBody');
+  var modal = document.getElementById("myModal");
+  var modalText = document.getElementById("modalBody");
 
   // 모달 창을 여는 함수
   function showModal(card) {
-    var userName = card.querySelector('#name').textContent;
+    var userName = card.querySelector("#name").textContent;
     document.getElementById("modal_name").innerHTML = userName;
-    var content = card.getAttribute('data-review');
+    var content = card.getAttribute("data-review");
     document.getElementById("modal_content").innerHTML = content;
-    var productName = card.querySelector('#product_name').textContent;
+    var productName = card.querySelector("#product_name").textContent;
     document.getElementById("modal_product_name").innerHTML = productName;
-    var productImgSrc = card.querySelector('.card.top img').src;
+    var productImgSrc = card.querySelector(".card.top img").src;
     document.getElementById("modal_img").src = productImgSrc;
-    modal.style.display = 'block'; // 모달 창을 표시합니다
+    modal.style.display = "block"; // 모달 창을 표시합니다
   }
 
   // 모달 창의 닫기 버튼
-  var span = document.getElementsByClassName('close')[0];
+  var span = document.getElementsByClassName("close")[0];
 
   // 닫기 버튼 클릭 시 모달 창 닫기
   span.onclick = function () {
-    modal.style.display = 'none';
+    modal.style.display = "none";
   };
 
   // 모달 창 바깥을 클릭하면 닫히도록
   window.onclick = function (event) {
     if (event.target == modal) {
-      modal.style.display = 'none';
+      modal.style.display = "none";
     }
   };
 </script>
