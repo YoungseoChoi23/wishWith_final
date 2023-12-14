@@ -341,6 +341,8 @@ def wishlist():
 
 @app.route('/show_heart/<name>/', methods=['GET'])
 def show_heart(name):
+    if 'id' not in session:
+        return '', 204
     my_heart = DB.get_heart_byname(session['id'], name)
     return jsonify({'my_heart': my_heart})
 
