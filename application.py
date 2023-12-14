@@ -169,8 +169,6 @@ def view_list():
 
     return render_template("product_list.html", row_data=row_data, limit=per_page, page=page, page_count=int((item_counts + per_page - 1) / per_page), total=item_counts)
 
-
-
 @app.route('/mypage')
 def mypage():
     page = request.args.get("page", 0, type=int)
@@ -201,8 +199,9 @@ def partiProduct():
 
 
 
-
-
+@app.route("/all-reivew-page")
+def all_review_check():
+    return render_template('all_review_check.html')
 
 @app.route("/view_detail/<name>/")
 def view_item_detail(name):
