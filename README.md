@@ -1,4 +1,6 @@
 # wishWith-final
+이화여자대학교 공동구매 웹사이트입니다. 
+
 wishWith 프로젝트 최종 제출물 Repository
 
 데모 시연 영상 링크
